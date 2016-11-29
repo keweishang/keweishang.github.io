@@ -203,22 +203,6 @@
     
       
       <item>
-        <title>Why nonfair lock is faster than fair lock</title>
-        
-          <description>&lt;h5 id=&quot;this-is-the-nonfair-scenario&quot;&gt;This is the nonfair scenario:&lt;/h5&gt;
-&lt;p&gt;When a thread B asks to hold a lock, if the lock is already taken by another thread A. Then the thread B will be suspended. After thread A finished his job, it releases the lock, then thread B is resumed. However, B needs a period of time to be able to actually run it’s task from where it was suspended. And this period of time could be relatively long compared to another thread C who is asking for that exact same lock at the same time. If C could acquire the lock, does C’s job and release the lock before B even “wakes up” (the time between B’s resumed and B’s able to actually run), then it’s a win-win situation for B and C. Because C gets the lock and has it’s job done and releases the lock, while B’s “waking up” and B gets the lock no later than it otherwise would have.&lt;/p&gt;
-
-</description>
-        
-        <pubDate>Sat, 01 Dec 2012 11:18:00 +0100</pubDate>
-        <link>
-        http://github.com/keweishang//java-nonfair-lock-fast</link>
-        <guid isPermaLink="true">http://github.com/keweishang//java-nonfair-lock-fast</guid>
-      </item>
-      
-    
-      
-      <item>
         <title>How object in Java is initialized</title>
         
           <description>&lt;p&gt;It’s important and fun to understand how exactly one object is initialized in Java.&lt;/p&gt;

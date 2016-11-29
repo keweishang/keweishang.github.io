@@ -168,27 +168,6 @@ All class variables are stored on the heap too.</p>
 	</item>
 
 	<item>
-	  <title>Why nonfair lock is faster than fair lock</title>
-	  <link>//java-nonfair-lock-fast</link>
-	  <author>Kewei Shang</author>
-	  <pubDate>2012-12-01T11:18:00+01:00</pubDate>
-	  <guid>//java-nonfair-lock-fast</guid>
-	  <description><![CDATA[
-	     <h5 id="this-is-the-nonfair-scenario">This is the nonfair scenario:</h5>
-<p>When a thread B asks to hold a lock, if the lock is already taken by another thread A. Then the thread B will be suspended. After thread A finished his job, it releases the lock, then thread B is resumed. However, B needs a period of time to be able to actually run it’s task from where it was suspended. And this period of time could be relatively long compared to another thread C who is asking for that exact same lock at the same time. If C could acquire the lock, does C’s job and release the lock before B even “wakes up” (the time between B’s resumed and B’s able to actually run), then it’s a win-win situation for B and C. Because C gets the lock and has it’s job done and releases the lock, while B’s “waking up” and B gets the lock no later than it otherwise would have.</p>
-
-<h5 id="in-the-fair-scenario">In the fair scenario:</h5>
-<p>The C will be queued after B.</p>
-
-<p>To set the fairness of a Lock, one can use the parametered constructor:</p>
-
-<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">Lock</span> <span class="n">lock</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ReentrantLock</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span> <span class="c1">//true for fair, false for nonfair</span></code></pre></figure>
-
-
-	  ]]></description>
-	</item>
-
-	<item>
 	  <title>How object in Java is initialized</title>
 	  <link>//java-object-init</link>
 	  <author>Kewei Shang</author>
