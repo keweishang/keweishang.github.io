@@ -12,6 +12,97 @@
    <atom:link href="rss" rel="self" type="application/rss+xml" />
    
 	<item>
+	  <title>Why nonfair lock is faster than fair lock</title>
+	  <link>//java-nonfair-lock-fast</link>
+	  <author>Kewei Shang</author>
+	  <pubDate>2016-11-29T01:32:00+01:00</pubDate>
+	  <guid>//java-nonfair-lock-fast</guid>
+	  <description><![CDATA[
+	     <h5 id="this-is-the-nonfair-scenario">This is the nonfair scenario:</h5>
+<p>When a thread B asks to hold a lock, if the lock is already taken by another thread A. Then the thread B will be suspended. After thread A finished his job, it releases the lock, then thread B is resumed. However, B needs a period of time to be able to actually run it’s task from where it was suspended. And this period of time could be relatively long compared to another thread C who is asking for that exact same lock at the same time. If C could acquire the lock, does C’s job and release the lock before B even “wakes up” (the time between B’s resumed and B’s able to actually run), then it’s a win-win situation for B and C. Because C gets the lock and has it’s job done and releases the lock, while B’s “waking up” and B gets the lock no later than it otherwise would have.</p>
+
+<h5 id="in-the-fair-scenario">In the fair scenario:</h5>
+<p>The C will be queued after B.</p>
+
+<p>To set the fairness of a Lock, one can use the parametered constructor. I assume the non-fair lock is faster and I did the following test - 8 threads contenting the same lock and each thread increments the shared counter 100k times. <strong>Non-fair lock is 51 times faster than fair lock.</strong></p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">java.util.concurrent.ExecutorService</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.Executors</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.TimeUnit</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.locks.Lock</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.locks.ReentrantLock</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ContentedResource</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="n">Lock</span> <span class="n">lock</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">long</span> <span class="n">counter</span> <span class="o">=</span> <span class="mi">0L</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="n">ContentedResource</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">fair</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">lock</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ReentrantLock</span><span class="o">(</span><span class="n">fair</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="n">increment</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">lock</span><span class="o">.</span><span class="na">lock</span><span class="o">();</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">counter</span><span class="o">++;</span>
+        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+            <span class="n">lock</span><span class="o">.</span><span class="na">unlock</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">long</span> <span class="n">getCount</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">lock</span><span class="o">.</span><span class="na">lock</span><span class="o">();</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">counter</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+            <span class="n">lock</span><span class="o">.</span><span class="na">unlock</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="n">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">InterruptedException</span> <span class="o">{</span>
+        <span class="kt">long</span> <span class="n">durationFair</span> <span class="o">=</span> <span class="n">testDuration</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="kt">long</span> <span class="n">durationNonFair</span> <span class="o">=</span> <span class="n">testDuration</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Non-fair lock is [%d] times faster than fair lock."</span><span class="o">,</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span><span class="n">durationFair</span><span class="o">/</span><span class="n">durationNonFair</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">long</span> <span class="n">testDuration</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">fair</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">InterruptedException</span> <span class="o">{</span>
+        <span class="n">ContentedResource</span> <span class="n">contentedResource</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ContentedResource</span><span class="o">(</span><span class="n">fair</span><span class="o">);</span>
+        <span class="n">ExecutorService</span> <span class="n">threadPool</span> <span class="o">=</span> <span class="n">Executors</span><span class="o">.</span><span class="na">newFixedThreadPool</span><span class="o">(</span><span class="mi">8</span><span class="o">);</span>
+
+        <span class="kt">long</span> <span class="n">start</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">();</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">threadPool</span><span class="o">.</span><span class="na">execute</span><span class="o">(</span><span class="k">new</span> <span class="n">Runnable</span><span class="o">()</span> <span class="o">{</span>
+                <span class="nd">@Override</span>
+                <span class="kd">public</span> <span class="kt">void</span> <span class="n">run</span><span class="o">()</span> <span class="o">{</span>
+                    <span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">100</span><span class="n">_000</span><span class="o">;</span>
+                    <span class="k">while</span> <span class="o">(</span><span class="n">i</span><span class="o">--</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="n">contentedResource</span><span class="o">.</span><span class="na">increment</span><span class="o">();</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+            <span class="o">});</span>
+        <span class="o">}</span>
+        <span class="n">threadPool</span><span class="o">.</span><span class="na">shutdown</span><span class="o">();</span>
+        <span class="n">threadPool</span><span class="o">.</span><span class="na">awaitTermination</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">MINUTES</span><span class="o">);</span>
+        <span class="kt">long</span> <span class="n">duration_millisecond</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">()</span> <span class="o">-</span> <span class="n">start</span><span class="o">;</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Fairness [%5s], count [%d], duration is [%d]ms\n"</span><span class="o">,</span> <span class="n">fair</span><span class="o">,</span> <span class="n">contentedResource</span><span class="o">.</span><span class="na">getCount</span><span class="o">(),</span>
+                <span class="n">duration_millisecond</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">duration_millisecond</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>Output:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> Fairness [ true], count [800000], duration is [7977]ms
+ Fairness [false], count [800000], duration is [156]ms
+ Non-fair lock is [51] times faster than fair lock.
+</code></pre>
+</div>
+
+	  ]]></description>
+	</item>
+
+	<item>
 	  <title>How the compiler understands your Java class</title>
 	  <link>//java-compiler-understand</link>
 	  <author>Kewei Shang</author>

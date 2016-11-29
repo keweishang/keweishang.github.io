@@ -12,6 +12,97 @@
    <atom:link href="rss" rel="self" type="application/rss+xml" />
    
 	<item>
+	  <title>Why nonfair lock is faster than fair lock</title>
+	  <link>//java-nonfair-lock-fast</link>
+	  <author>Kewei Shang</author>
+	  <pubDate>2016-11-29T01:32:00+01:00</pubDate>
+	  <guid>//java-nonfair-lock-fast</guid>
+	  <description><![CDATA[
+	     <h5 id="this-is-the-nonfair-scenario">This is the nonfair scenario:</h5>
+<p>When a thread B asks to hold a lock, if the lock is already taken by another thread A. Then the thread B will be suspended. After thread A finished his job, it releases the lock, then thread B is resumed. However, B needs a period of time to be able to actually run it’s task from where it was suspended. And this period of time could be relatively long compared to another thread C who is asking for that exact same lock at the same time. If C could acquire the lock, does C’s job and release the lock before B even “wakes up” (the time between B’s resumed and B’s able to actually run), then it’s a win-win situation for B and C. Because C gets the lock and has it’s job done and releases the lock, while B’s “waking up” and B gets the lock no later than it otherwise would have.</p>
+
+<h5 id="in-the-fair-scenario">In the fair scenario:</h5>
+<p>The C will be queued after B.</p>
+
+<p>To set the fairness of a Lock, one can use the parametered constructor. I assume the non-fair lock is faster and I did the following test - 8 threads contenting the same lock and each thread increments the shared counter 100k times. <strong>Non-fair lock is 51 times faster than fair lock.</strong></p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">java.util.concurrent.ExecutorService</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.Executors</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.TimeUnit</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.locks.Lock</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.concurrent.locks.ReentrantLock</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ContentedResource</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="n">Lock</span> <span class="n">lock</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">long</span> <span class="n">counter</span> <span class="o">=</span> <span class="mi">0L</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="n">ContentedResource</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">fair</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">lock</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ReentrantLock</span><span class="o">(</span><span class="n">fair</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="n">increment</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">lock</span><span class="o">.</span><span class="na">lock</span><span class="o">();</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">counter</span><span class="o">++;</span>
+        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+            <span class="n">lock</span><span class="o">.</span><span class="na">unlock</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">long</span> <span class="n">getCount</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">lock</span><span class="o">.</span><span class="na">lock</span><span class="o">();</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">counter</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+            <span class="n">lock</span><span class="o">.</span><span class="na">unlock</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="n">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">InterruptedException</span> <span class="o">{</span>
+        <span class="kt">long</span> <span class="n">durationFair</span> <span class="o">=</span> <span class="n">testDuration</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="kt">long</span> <span class="n">durationNonFair</span> <span class="o">=</span> <span class="n">testDuration</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Non-fair lock is [%d] times faster than fair lock."</span><span class="o">,</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span><span class="n">durationFair</span><span class="o">/</span><span class="n">durationNonFair</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">long</span> <span class="n">testDuration</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">fair</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">InterruptedException</span> <span class="o">{</span>
+        <span class="n">ContentedResource</span> <span class="n">contentedResource</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ContentedResource</span><span class="o">(</span><span class="n">fair</span><span class="o">);</span>
+        <span class="n">ExecutorService</span> <span class="n">threadPool</span> <span class="o">=</span> <span class="n">Executors</span><span class="o">.</span><span class="na">newFixedThreadPool</span><span class="o">(</span><span class="mi">8</span><span class="o">);</span>
+
+        <span class="kt">long</span> <span class="n">start</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">();</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">threadPool</span><span class="o">.</span><span class="na">execute</span><span class="o">(</span><span class="k">new</span> <span class="n">Runnable</span><span class="o">()</span> <span class="o">{</span>
+                <span class="nd">@Override</span>
+                <span class="kd">public</span> <span class="kt">void</span> <span class="n">run</span><span class="o">()</span> <span class="o">{</span>
+                    <span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">100</span><span class="n">_000</span><span class="o">;</span>
+                    <span class="k">while</span> <span class="o">(</span><span class="n">i</span><span class="o">--</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="n">contentedResource</span><span class="o">.</span><span class="na">increment</span><span class="o">();</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+            <span class="o">});</span>
+        <span class="o">}</span>
+        <span class="n">threadPool</span><span class="o">.</span><span class="na">shutdown</span><span class="o">();</span>
+        <span class="n">threadPool</span><span class="o">.</span><span class="na">awaitTermination</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">MINUTES</span><span class="o">);</span>
+        <span class="kt">long</span> <span class="n">duration_millisecond</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">()</span> <span class="o">-</span> <span class="n">start</span><span class="o">;</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Fairness [%5s], count [%d], duration is [%d]ms\n"</span><span class="o">,</span> <span class="n">fair</span><span class="o">,</span> <span class="n">contentedResource</span><span class="o">.</span><span class="na">getCount</span><span class="o">(),</span>
+                <span class="n">duration_millisecond</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">duration_millisecond</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>Output:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> Fairness [ true], count [800000], duration is [7977]ms
+ Fairness [false], count [800000], duration is [156]ms
+ Non-fair lock is [51] times faster than fair lock.
+</code></pre>
+</div>
+
+	  ]]></description>
+	</item>
+
+	<item>
 	  <title>Understand quicksort partitioning</title>
 	  <link>//quicksort-partition</link>
 	  <author>Kewei Shang</author>
@@ -543,41 +634,6 @@ h = 0, when theta-transpose</em>x &lt;0</p>
 
 <p><img src="assets/images/s-ml-w5-1.png" alt="weights" />
 <img src="assets/images/s-ml-w5-2.png" alt="score" /></p>
-
-	  ]]></description>
-	</item>
-
-	<item>
-	  <title>Mimicked version of Alice's Adventures in Wonderland</title>
-	  <link>//alice-adventures</link>
-	  <author>Kewei Shang</author>
-	  <pubDate>2016-06-03T12:18:00+02:00</pubDate>
-	  <guid>//alice-adventures</guid>
-	  <description><![CDATA[
-	     <p>This is an easy algorithm I coded to practise Python.</p>
-
-<p>I’ve been studying Machine Learning for a while, mainly by following courses on <a href="https://www.coursera.org/learn/machine-learning">Coursera</a>. Even though I have some occasions to implement the training algorithms such as Gradient Descent for Linear Regression, Logistic Regression for Classification; I mainly used Matlab, which is an efficient and practical tool and very easy to get start with. However, I think it would also be great to learn to use some of the ML libraries in Python, such as scikit-learn, which is already tuned and optimised by a lot of data scientists.  I also want to start doing some of the problems on Kaggle, and I’m not sure if Matlab is a perfect tool for that. This is why I decided to learn python by following <a href="https://developers.google.com/edu/python/">Google Python Class</a>.</p>
-
-<h3 id="whats-the-mimicked-version-of-alices-adventures-in-wonderland">What’s the mimicked version of Alice’s Adventures in Wonderland?</h3>
-
-<p>Basically, you pick a random word in the book. I picked the first word in the book, which is “Alice”. Then you shall follow these steps to generate your version of the book:</p>
-
-<ul>
-  <li>Print the chosen word, and then look up what words might come next in the original novel, then pick one at random.</li>
-  <li>Do this recursively for 200 times.</li>
-</ul>
-
-<h3 id="can-you-show-me-the-mimicked-version">Can you show me the mimicked version?</h3>
-
-<p>Here’s the mimicked version I generated with the algorithm mentioned above :)</p>
-
-<blockquote>
-  <p>Alice’s elbow was gently brushing away quietly marched off together, Alice a minute, ‘and I can be seen: she spread his book, ‘Rule Forty-two. ALL RETURNED FROM HIM TWO–” why, I ought to a well?’ The first saw the mistake about for her eyes were of him), while she is asleep again,’ said after her: its full of the opportunity of things–I can’t have signed at once set to feel very dull!’ ‘You might belong to my youth,’ said the right THROUGH the Mouse with such nonsense!’ ‘I feared it might knock, and his pocket, and anxious.) Alice to be civil, you’d better with the sea,’ the rattle of the Cat went on a week: HE was.’ ‘I feared it was certainly was, what? Alice called after it, and Grief, they don’t believe there’s nothing seems to be a thick wood. ‘The fourth.’ ‘Two days and then, saying to speak again. This was I the others. ‘Are they were nowhere to have to Alice said; but there stood the King. ‘Nearly two and hurried on, looking over their own business!’ said Alice. ‘Why the stairs. Alice thought was coming. It sounded promising, certainly: but the Mock Turtle, and doesn’t understand</p>
-</blockquote>
-
-<p>Isn’t it fun? :)</p>
-
-<p>I’ll continue following the rest of the ML course. Hope I could use what I learned one day to solve real world problems.</p>
 
 	  ]]></description>
 	</item>
