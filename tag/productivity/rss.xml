@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+   
+      <title>github.com/keweishang/</title>
+   
+   <link>http://github.com/keweishang/</link>
+   <description>The coding story begins here.</description>
+   <language>en-uk</language>
+   <managingEditor> Kewei Shang</managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+   
+	<item>
+	  <title>7 ways to boost your brain productivity</title>
+	  <link>//boost-brain</link>
+	  <author>Kewei Shang</author>
+	  <pubDate>2016-06-28T12:18:00+02:00</pubDate>
+	  <guid>//boost-brain</guid>
+	  <description><![CDATA[
+	     <p>Sandra Bond Chapman met an autistic boy one day, and was fascinated by his problem solving skills. She then decided to dedicate her time and life to studying and unlocking the immense humain potential of our brain. Now she’s a leading cognitive neuroscientist at The University of Texas, discovering approaches to build brain resilience, strengthen healthy brain development and repair brain function.</p>
+
+<p>In the talk, she gave 7 tips - all based on scientifically proved research - to boost your brain productivity. Here’s a brief summery:</p>
+
+<ul>
+  <li>Single task</li>
+  <li>Inhibit information : just focus on the few things that you’re doing</li>
+  <li>Detox distractions</li>
+  <li>Big idea thinking: generalising, synthesising</li>
+  <li>Calibrate mental effort: spend best-quality time (e.p. morning time) and longer time on things important, not on things we should finish quickly (e.p. things your manager often asks you to do and tells you it’s quite urgent)</li>
+  <li>Innovate: brain doesn’t like status quo. Innovative conversations can even spark new romance :)</li>
+  <li>Motivate: innovate the activities you don’t like and make them more interesting. Motivation increases our most powerful neurotransmitter - dopamine, which makes us happier and increases the speed of learning</li>
+</ul>
+
+<p>I might need to work on my Big idea thinking - generalising and synthesising skills, as I find it very helpful for me to understand the whole picture. It’s also quite helpful to my audiences since they can understand better, keep themselves interested and follow the topic.</p>
+
+<p>Source: <a href="https://youtu.be/uUL5o-1Yawo">https://youtu.be/uUL5o-1Yawo</a></p>
+
+	  ]]></description>
+	</item>
+
+
+</channel>
+</rss>

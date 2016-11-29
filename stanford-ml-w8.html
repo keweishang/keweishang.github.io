@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- [[! Document Settings ]] -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- [[! Page Meta ]] -->
+    <title>Stanford Machine Learning Week 8 review</title>
+    <meta name="description" content="Finding The Way Home - The coding story begins here." />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" >
+
+    <!-- [[! Styles'n'Scripts ]] -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+    <link rel="stylesheet" type="text/css"
+          href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
+
+    <!-- [[! highlight.js ]] -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css">
+    <style>.hljs { background: none; }</style>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- [[! Ghost outputs important style and meta data with this tag ]] -->
+        <link rel="canonical" href="/" />
+    <meta name="referrer" content="origin" />
+    <link rel="next" href="/page2/" />
+
+    <meta property="og:site_name" content="Finding The Way Home" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Finding The Way Home" />
+    <meta property="og:description" content="The coding story begins here." />
+    <meta property="og:url" content="/" />
+    <meta property="og:image" content="/assets/images/cover-write.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Finding The Way Home" />
+    <meta name="twitter:description" content="The coding story begins here." />
+    <meta name="twitter:url" content="/" />
+    <meta name="twitter:image:src" content="/assets/images/cover-write.jpg" />
+
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Website",
+    "publisher": "Finding The Way Home",
+    "url": "/",
+    "image": "/assets/images/cover-write.jpg",
+    "description": "The coding story begins here."
+}
+    </script>
+
+    <meta name="generator" content="Jekyll 3.0.0" />
+    <link rel="alternate" type="application/rss+xml" title="Finding The Way Home" href="/feed.xml" />
+
+
+</head>
+<body class="home-template nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        <li class="nav-home " role="presentation"><a href="/">Home</a></li>
+        <li class="nav-about " role="presentation"><a href="/about">About</a></li>
+        <li class="nav-algorithm " role="presentation"><a href="/tag/algorithm">Algorithm</a></li>
+        <li class="nav-java " role="presentation"><a href="/tag/java">Java</a></li>
+        <li class="nav-python " role="presentation"><a href="/tag/python">Python</a></li>
+        <li class="nav-machine-learning " role="presentation"><a href="/tag/machine-learning">Machine Learning</a></li>
+        <li class="nav-productivity " role="presentation"><a href="/tag/productivity">Productivity</a></li>
+        <li class="nav-author " role="presentation"><a href="/author/kewei">Author</a></li>
+    </ul>
+    <a class="subscribe-button icon-feed" href="/feed.xml">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        <!-- [[! Everything else gets inserted here ]] -->
+        <!-- < default -->
+
+<!-- The comment above "< default" means - insert everything in this file into -->
+    <!-- the [body] of the default.hbs template, which contains our header/footer. -->
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<header class="main-header post-head " style="background-image: url(/assets/images/cover-s-ml-w8.png) ">
+    <nav class="main-nav  overlay  clearfix">
+        <a class="blog-logo" href="/"><img src="/assets/images/home.png" alt="Blog Logo" /></a>
+        
+            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+        
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post machine-learning">
+
+        <header class="post-header">
+            <h1 class="post-title">Stanford Machine Learning Week 8 review</h1>
+            <section class="post-meta">
+            <!-- <a href='/'>Kewei Shang</a> -->
+            <time class="post-date" datetime="2016-07-03">03 Jul 2016</time>
+                <!-- [[tags prefix=" on "]] -->
+                 
+                on 
+                
+                    
+                       <a href='/tag/machine-learning'>Machine-learning</a>
+                       
+                
+                
+            </section>
+        </header>
+
+        <section class="post-content">
+            
+            <p>This week’s machine learning course is about Unsupervised Learning. Supervised Learning is to learn the weights from training examples with answers. <strong>Unsupervised Learning</strong> does not have such answers in the training examples.</p>
+
+<h5 id="what-is-k-means-algorithm">What is K-Means Algorithm?</h5>
+
+<p>K-Means Algorithm is one of the supervised learning algorithm, to automatically find K clusters from the training points. It repeats the two steps iteratively until arrives at the optimal situation.</p>
+
+<ul>
+  <li>Clustering assignment : assign each point (each training example) to a cluster centroid</li>
+  <li>Move centroid : move centroid to the average position of all points belonging to it</li>
+</ul>
+
+<h5 id="a-few-things-to-pay-attention-to-when-implementing-k-means-algorithm">A few things to pay attention to when implementing K-Means Algorithm</h5>
+
+<ul>
+  <li>Always normalise the features (zero-mean, better scaling)</li>
+  <li>Local optimal is possible, depending on the initial K centroids used. Therefore, we should randomly initialise the K centroids many times and choose the one with the minimum cost function</li>
+  <li>Choosing the K number: Elbow Method is not always good. It is better to choose the K number that best serves the downstream purpose.</li>
+</ul>
+
+<h5 id="dimension-reduction-motivation">Dimension Reduction Motivation</h5>
+
+<p>By working with lower dimensional data, we have the following advantages:</p>
+
+<ul>
+  <li>Our learning algorithms can often run much much faster</li>
+  <li>Use less memory or disk space</li>
+  <li>Visualise data in a 2D plot if k = 2, or in a 3D plot if k = 3</li>
+</ul>
+
+<h5 id="pca-principle-component-analysis-algorithm">PCA (Principle Component Analysis) algorithm</h5>
+
+<p>PCA finds a low dimensional “surface” onto which to project the training examples so that the sum of the <strong>projection errors</strong> is minimised.</p>
+
+<p><strong>Projection error</strong> means the projection distance which is the distance between points (All training examples X) and the projections.
+Think about each training example x as a point in a 3D space, and the “surface” as a 2D plane in the 3D space, the distance of the projection from the point x onto the 2D plane is the projection error (projection distance).</p>
+
+<p>Let’s say we have an n-dimensional training example, and we want to reduce it to a k-dimensional training example.</p>
+
+<p>The PCA will find k vectors - u(1), u(2), …, u(k), which will define the “surface”. 
+u(1) .. u(k) are called eigenvectors or principal components.</p>
+
+<h5 id="how-to-reduce-a-training-example-from-n-dimension-to-k-dimension">How to reduce a training example from n dimension to k dimension?</h5>
+
+<p>X the training set, is an n*m matrix</p>
+
+<ol>
+  <li>Sigma = (1/m)<em>X’</em>X, the covariance matrix</li>
+  <li>[U,S,V] = svd(Sigma), take the U, n*n matrix, which are the eigenvectors (the principle components)</li>
+  <li>Ureduce = U(:, 1:k), meaning take the first k columns of U, name it Ureduce, a n*k matrix</li>
+  <li>z = Ureduce’*x transform each training example x into a k dimensional vector</li>
+</ol>
+
+<h5 id="reconstruction-from-compressed-representation">Reconstruction from Compressed Representation</h5>
+
+<p>One can easily reconstruct each training example x (n-dimensional) from the compressed representation (k-dimensional) using xapprox = Ureduce*z</p>
+
+<h5 id="how-to-choose-k-number-of-principal-components">How to choose k (number of principal components)?</h5>
+
+<p>Choose a (smallest value of) k so that “99% of variance is retained”. Yes, we should try to retain as much variance as possible.</p>
+
+<h5 id="is-it-possible-to-apply-the-mapping-x---z-to-cross-validation-and-test-set">Is it possible to apply the mapping x -&gt; z to cross validation and test set?</h5>
+
+<p>Yes, you should apply the same mapping x -&gt; z you get from running PCA on the training set.</p>
+
+<h5 id="caveat">Caveat</h5>
+
+<p>Do not do PCA systematically in your ML system design, only apply PCA when your learning algorithm runs too slow.</p>
+
+<h5 id="dimension-reduction-showcase">Dimension Reduction showcase</h5>
+
+<p>On the left side of the following figure is the original features, each training example (face) is represented by 1024 pixels. When choosing only 100 principal components (reduction of factor of 10), we reduce the dimension of each training example from 1024 to 100. On the right side of the figure is the reconstructed features. Even some informations are lost by dimension reduction, the faces are still recognisable and we 10 times less features to compute.</p>
+
+<p><img src="assets/images/s-ml-w8-1.png" alt="" /></p>
+
+<h5 id="the-eigenvectors">The eigenvectors</h5>
+
+<p>Each of the following faces represents an eigenvector. Each eigenvector transforms one original 1024 dimensional (pixel) training example to 1 pixel of the 100 dimensional (pixel) reduced training example. The figure shows only the first 36 principle components:</p>
+
+<p><img src="assets/images/s-ml-w8-2.png" alt="" /></p>
+
+
+        </section>
+
+        <footer class="post-footer">
+
+            <!-- Everything inside the #author tags pulls data from the author -->
+            <!-- #author-->
+
+            
+            <figure class="author-image">
+                <a class="img" href="/author/kewei" style="background-image: url(/assets/images/casper.png)"><span class="hidden">'s Picture</span></a>
+            </figure>
+            
+
+            <section class="author">
+                <h4><a href="/author/kewei">Kewei Shang</a></h4>
+                
+                
+                    <p> An adorkable geek.</p>
+                
+                <div class="author-meta">
+                    <span class="author-location icon-location"> Paris, France</span> 
+                    <span class="author-link icon-link"><a href="http://github.com/keweishang/"> github.com/keweishang/</a></span> 
+                </div>
+            </section>
+
+            <!-- /author  -->
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="http://twitter.com/share?text=Stanford Machine Learning Week 8 review&amp;url=http://github.com/keweishang/stanford-ml-w8"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://github.com/keweishang/stanford-ml-w8"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://github.com/keweishang/stanford-ml-w8"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+            
+            <!-- Add Disqus Comments -->
+            
+            
+        </footer>
+
+    </article>
+
+</main>
+
+<aside class="read-next">
+
+    <!-- [[! next_post ]] -->
+    
+        <a class="read-next-story " style="background-image: url(/assets/images/cover-s-ml-w9.jpg)" href="/stanford-ml-w9">
+            <section class="post">
+                <h2>Stanford Machine Learning Week 9 review</h2>
+                <p>This week's machine learning course is about Anomaly Detection and Recommender Systems. ##### What is...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /next_post ]] -->
+    <!-- [[! prev_post ]] -->
+    
+        <a class="read-next-story prev " style="background-image: url(/assets/images/cover-s-ml-w7.png)" href="/stanford-ml-w7">
+            <section class="post">
+                <h2>Stanford Machine Learning Week 7 review</h2>
+                <p>This week’s machine learning course is about SVM, which is a very important machine learning...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /prev_post ]] -->
+</aside>
+
+<!-- /post -->
+
+
+        <footer class="site-footer clearfix">
+          <section class="copyright"><a href="/">Finding The Way Home</a> &copy; 2016</section>
+        </footer>
+    </div>
+    <!-- [[! Ghost outputs important scripts and data with this tag ]] -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!-- [[! The main JavaScript file for Casper ]] -->
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+
+    <!-- Add Google Analytics  -->
+        <!-- Google Analytics Tracking code -->
+     <script>
+	    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	    ga('create', 'UA-69281367-1', 'auto');
+	    ga('send', 'pageview');
+
+     </script>   
+</body>
+</html>

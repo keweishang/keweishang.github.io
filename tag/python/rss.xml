@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+   
+      <title>github.com/keweishang/</title>
+   
+   <link>http://github.com/keweishang/</link>
+   <description>The coding story begins here.</description>
+   <language>en-uk</language>
+   <managingEditor> Kewei Shang</managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+   
+	<item>
+	  <title>Mimicked version of Alice's Adventures in Wonderland</title>
+	  <link>//alice-adventures</link>
+	  <author>Kewei Shang</author>
+	  <pubDate>2016-06-03T12:18:00+02:00</pubDate>
+	  <guid>//alice-adventures</guid>
+	  <description><![CDATA[
+	     <p>This is an easy algorithm I coded to practise Python.</p>
+
+<p>I’ve been studying Machine Learning for a while, mainly by following courses on <a href="https://www.coursera.org/learn/machine-learning">Coursera</a>. Even though I have some occasions to implement the training algorithms such as Gradient Descent for Linear Regression, Logistic Regression for Classification; I mainly used Matlab, which is an efficient and practical tool and very easy to get start with. However, I think it would also be great to learn to use some of the ML libraries in Python, such as scikit-learn, which is already tuned and optimised by a lot of data scientists.  I also want to start doing some of the problems on Kaggle, and I’m not sure if Matlab is a perfect tool for that. This is why I decided to learn python by following <a href="https://developers.google.com/edu/python/">Google Python Class</a>.</p>
+
+<h3 id="whats-the-mimicked-version-of-alices-adventures-in-wonderland">What’s the mimicked version of Alice’s Adventures in Wonderland?</h3>
+
+<p>Basically, you pick a random word in the book. I picked the first word in the book, which is “Alice”. Then you shall follow these steps to generate your version of the book:</p>
+
+<ul>
+  <li>Print the chosen word, and then look up what words might come next in the original novel, then pick one at random.</li>
+  <li>Do this recursively for 200 times.</li>
+</ul>
+
+<h3 id="can-you-show-me-the-mimicked-version">Can you show me the mimicked version?</h3>
+
+<p>Here’s the mimicked version I generated with the algorithm mentioned above :)</p>
+
+<blockquote>
+  <p>Alice’s elbow was gently brushing away quietly marched off together, Alice a minute, ‘and I can be seen: she spread his book, ‘Rule Forty-two. ALL RETURNED FROM HIM TWO–” why, I ought to a well?’ The first saw the mistake about for her eyes were of him), while she is asleep again,’ said after her: its full of the opportunity of things–I can’t have signed at once set to feel very dull!’ ‘You might belong to my youth,’ said the right THROUGH the Mouse with such nonsense!’ ‘I feared it might knock, and his pocket, and anxious.) Alice to be civil, you’d better with the sea,’ the rattle of the Cat went on a week: HE was.’ ‘I feared it was certainly was, what? Alice called after it, and Grief, they don’t believe there’s nothing seems to be a thick wood. ‘The fourth.’ ‘Two days and then, saying to speak again. This was I the others. ‘Are they were nowhere to have to Alice said; but there stood the King. ‘Nearly two and hurried on, looking over their own business!’ said Alice. ‘Why the stairs. Alice thought was coming. It sounded promising, certainly: but the Mock Turtle, and doesn’t understand</p>
+</blockquote>
+
+<p>Isn’t it fun? :)</p>
+
+<p>I’ll continue following the rest of the ML course. Hope I could use what I learned one day to solve real world problems.</p>
+
+	  ]]></description>
+	</item>
+
+
+</channel>
+</rss>

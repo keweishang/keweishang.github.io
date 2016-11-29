@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+   
+      <title>github.com/keweishang/</title>
+   
+   <link>http://github.com/keweishang/</link>
+   <description>The coding story begins here.</description>
+   <language>en-uk</language>
+   <managingEditor> Kewei Shang</managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+   
+	<item>
+	  <title>Understand quicksort partitioning</title>
+	  <link>//quicksort-partition</link>
+	  <author>Kewei Shang</author>
+	  <pubDate>2016-07-23T13:18:00+02:00</pubDate>
+	  <guid>//quicksort-partition</guid>
+	  <description><![CDATA[
+	     <p>The most important part of understanding quicksort is to understand the partitioning function.</p>
+
+<p>Here is an intuitive way to present the array being currently partitioned, let’s say we’ve selected a pivot in the middle of the array and its value is 100. Here’s the array being partitioned.</p>
+
+<p><img src="assets/images/quicksort-partition-1.png" alt="" /></p>
+
+<p>Where pivot was prior to partitioning and after the partitioning doesn’t really matter, as long as it ends up being on the correct side of the result boundary.What really matters is that when partitioning is done, all elements to the left of left index are smaller than pivot.(or all elements to the right of right index are larger than pivot)Let’s assume the pivot element 100 has already been swapped to the blue part.</p>
+
+<ol>
+  <li>The left index keeps increasing, and all elements it left behind are smaller than the pivot. At the same time, the right index keeps decreasing, and all elements it left behind are larger than the pivot.</li>
+  <li>If left index meets an element larger than or equal to the pivot, it stops, and wait for right index to find an element smaller than or equal to the pivot, then they swap the elements and continue the step 1 until the left index is larger than the right index. What if the right index does not find an element smaller than or equal to the pivot? Then the right index will just continue moving to the left until it passes the left index, and stops at the next element of the left index (because its value is smaller than pivot). Then the partitioning is done.</li>
+  <li>return the left index as the boundary to which all elements on the left are smaller than the pivot.</li>
+</ol>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="n">quicksort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">quicksort</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="n">quicksort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">,</span> <span class="kt">int</span> <span class="n">left</span><span class="o">,</span> <span class="kt">int</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="n">partition</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">left</span><span class="o">,</span> <span class="n">right</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="n">index</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">quicksort</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">left</span><span class="o">,</span> <span class="n">index</span> <span class="o">-</span> <span class="mi">1</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">quicksort</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">index</span><span class="o">,</span> <span class="n">right</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">partition</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">,</span> <span class="kt">int</span> <span class="n">left</span><span class="o">,</span> <span class="kt">int</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">pivot</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">];</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">while</span> <span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">left</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">pivot</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">left</span><span class="o">++;</span>
+            <span class="o">}</span>
+            <span class="k">while</span> <span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">right</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">pivot</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">right</span><span class="o">--;</span>
+            <span class="o">}</span>
+
+            <span class="k">if</span> <span class="o">(</span><span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">swap</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">left</span><span class="o">,</span> <span class="n">right</span><span class="o">);</span>
+                <span class="n">left</span><span class="o">++;</span>
+                <span class="n">right</span><span class="o">--;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">left</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="n">swap</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">,</span> <span class="kt">int</span> <span class="n">left</span><span class="o">,</span> <span class="kt">int</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">left</span><span class="o">];</span>
+        <span class="n">arr</span><span class="o">[</span><span class="n">left</span><span class="o">]</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">right</span><span class="o">];</span>
+        <span class="n">arr</span><span class="o">[</span><span class="n">right</span><span class="o">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="n">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]</span> <span class="o">{</span> <span class="mi">5</span><span class="o">,</span> <span class="mi">7</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">3</span> <span class="o">};</span>
+        <span class="n">Solution</span> <span class="n">solution</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Solution</span><span class="o">();</span>
+        <span class="n">solution</span><span class="o">.</span><span class="na">quicksort</span><span class="o">(</span><span class="n">arr</span><span class="o">);</span>
+        <span class="c1">// Array is sorted : [1, 2, 3, 5, 7]</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">arr</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+<p><strong>Bonus</strong>: Have you seen this amusing <a href="https://www.youtube.com/watch?v=ywWBy6J5gz8">Hungarian quicksort dance</a> before?</p>
+
+
+	  ]]></description>
+	</item>
+
+
+</channel>
+</rss>

@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+   
+      <title>github.com/keweishang/</title>
+   
+   <link>http://github.com/keweishang/</link>
+   <description>The coding story begins here.</description>
+   <language>en-uk</language>
+   <managingEditor> Kewei Shang</managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+   
+	<item>
+	  <title>Stanford Machine Learning Final Week Review! Congratulations!</title>
+	  <link>//stanford-ml-wf-copy</link>
+	  <author>Kewei Shang</author>
+	  <pubDate>2016-07-11T13:18:00+02:00</pubDate>
+	  <guid>//stanford-ml-wf-copy</guid>
+	  <description><![CDATA[
+	     <p>This week’s machine learning course is about Machine Learning Pipeline.</p>
+
+<p>It’s a system with many stages / components, several of which may use machine learning. When dealing with complex real world problems. Oftentimes, in order to solve one problem, we need to solve multiple sub-problems. For example, one way to solve Photo OCR (Optical Character Recognition) problem is to solve the following sub-problems:</p>
+
+<ol>
+  <li>Text detection</li>
+  <li>Character segmentation</li>
+  <li>Character classification</li>
+</ol>
+
+<p><img src="assets/images/s-ml-w11-1.png" alt="" /></p>
+
+<p>Each of the above sub-problems also involves using machine learning (classification). Text detection uses Sliding Windows detection.</p>
+
+<p><img src="assets/images/s-ml-w11-2.png" alt="" /></p>
+
+<h5 id="how-can-we-know-which-stage--component-is-more-important-on-which-we-should-spend-more-time">How can we know which stage / component is more important, on which we should spend more time?</h5>
+
+<p>By using <strong>Ceiling Analysis</strong>, we can tell which part of the pipeline is more important, which we should work on next. If we have a single numeric evaluation that tells us how good our global pipeline performance is, then we can imagine what if one of the stages worked perfectly, what would the global performance be in that case? If the global performance improved a lot, that means it’s the right stage / component to work on next. If the global performance doesn’t improve that much, it means even we spend a lot of time making the stage / component perfect, we still can’t improve the global performance that much.</p>
+
+<p><img src="assets/images/s-ml-w11-3.png" alt="" /></p>
+
+<p>In the above figure, we clearly see by making the Text detection stage perfect, we would improve 17% of the global accuracy. That means we should spend more time working on improving Text detection, than say, working on Character segmentation, which would improve only 1% global accuracy.</p>
+
+<h5 id="finally-ive-earned-the-certificate-">Finally, I’ve earned the certificate :)</h5>
+
+<p><img src="assets/images/s-ml-w11-cert.png" alt="" /></p>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Stanford Machine Learning Week 10 review</title>
+	  <link>//stanford-ml-w10</link>
+	  <author>Kewei Shang</author>
+	  <pubDate>2016-07-10T13:18:00+02:00</pubDate>
+	  <guid>//stanford-ml-w10</guid>
+	  <description><![CDATA[
+	     <p>This week’s machine learning course is about training large dataset and Stochastic Gradient Descent.</p>
+
+<h5 id="what-is-the-problem-with-learning-with-large-dataset">What is the problem with learning with large dataset?</h5>
+
+<p>When training the parameters with a large dataset, such as 100 million training examples or even more, we may not be able to fit all training example into memory. However, we do need all the training examples to calculate partial derivatives for all the parameters. That means, for each step of gradient descent, we have to calculate the next θ value by accumulating the h(θ) - y of all the training examples. How can we deal with that if the training example is too large to fit into memory?</p>
+
+<h5 id="three-solutions">Three solutions</h5>
+
+<ul>
+  <li>Stochastic Gradient Descent</li>
+  <li>Mini-Batch Gradient Descent (may be more efficient)</li>
+  <li>Map Reduce (multiple machines)</li>
+</ul>
+
+<h5 id="stochastic-gradient-descent">Stochastic Gradient Descent</h5>
+
+<p>Each update of θ is calculated by only one training example. Stochastic gradient descent is much faster than Batch gradient descent. Each baby step -update θ values - of Batch gradient descent uses all training examples, whereas each baby step of Stochastic gradient descent uses only one training example. But one caveat here is that even though the baby steps of Stochastic gradient descent will generally move the parameters in the direction of the global minimum, but not always. In fact as you run Stochastic gradient descent it doesn’t actually converge in the same sense as Batch gradient descent does, and what it ends up doing is wandering around continuously in some region that’s close to the global minimum, but it doesn’t just get to the global minimum and stay there. In practise, it isn’t a problem though since it will be a pretty good hypothesis.</p>
+
+<p><img src="assets/images/s-ml-w10-1.png" alt="" /></p>
+
+<h5 id="stochastic-gradient-descent-convergence">Stochastic gradient descent convergence</h5>
+
+<p>We can plot a learning curve to check if the our stochastic gradient descent is converging when more and more iterations. The x-axis is the number of iterations, and the y-axis is the cost function. As we can see in the top-left figure, we get a slightly better result when we use a smaller learning rate. The top-right figure shows we get a more smoothy curve when calculating the cost function every 5000 iterations instead of every 1000 iterations. The bottom-right figure shows if the learning rate is too large, the learning curve might end up diverging.</p>
+
+<p><img src="assets/images/s-ml-w10-2.png" alt="" /></p>
+
+<h5 id="mini-batch-gradient-descent">Mini-Batch Gradient Descent</h5>
+
+<p>It’s just another variation of stochastic gradient descent. Instead of calculating one training example at a time, it calculates multiple (mini batch) training examples. Mini-batch gradient descent is likely to outperform Stochastic gradient descent only if you have a good vectorised implementation, paralleling your computation.</p>
+
+<h5 id="map-reduce">Map Reduce</h5>
+
+<p>All learning algorithms that can be expressed as a summation over the training set can apply Map Reduce in order to speed up the computation. By paralleling the computation over different computers. So whether it’s Linear Regression, Logistic Regression, or Neural Network, they can all apply map reduce. For example, if we have 400 million training examples, we can partition them into 4 computers and each computer calculates one fourth of the training examples, before another machine combines the 4 results together to calculate the partial derivative.</p>
+
+<p><img src="assets/images/s-ml-w10-3.png" alt="" /></p>
+
+<h5 id="what-is-online-learning">What is Online Learning?</h5>
+
+<p>When you can continuously have streams of new training examples and you don’t want to save all the previous training examples because you constantly have new data. Then you can use Online learning. It continuously (forever) calculate the stochastic gradient descent.</p>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Stanford Machine Learning Week 9 review</title>
+	  <link>//stanford-ml-w9</link>
+	  <author>Kewei Shang</author>
+	  <pubDate>2016-07-08T13:18:00+02:00</pubDate>
+	  <guid>//stanford-ml-w9</guid>
+	  <description><![CDATA[
+	     <p>This week’s machine learning course is about Anomaly Detection and Recommender Systems.</p>
+
+<h5 id="what-is-anomaly-detection">What is Anomaly Detection?</h5>
+
+<p>Given a bunch of x’s (where each x is a vector - a training example), detect whether for a new example x (a new vector), possibility p(x) &lt; ε (epsilon). If yes, it is considered an anomaly; otherwise, it is considered normal.</p>
+
+<p><img src="assets/images/s-ml-w9-1.png" alt="" /></p>
+
+<h5 id="what-is-gaussian-normal-distribution">What is Gaussian (Normal) distribution?</h5>
+
+<p>Gaussian distribution is defined as X ~ N(μ, σ^2), where μ (pronounced mu) is the mean of x; σ (pronounced sigma) is the standard deviation; σ^2 is the variance.</p>
+
+<p><img src="assets/images/s-ml-w9-2.png" alt="" /></p>
+
+<h5 id="anomaly-detection-algorithm">Anomaly Detection Algorithm</h5>
+
+<p>p(x;μ,σ^2) uses Gaussian distribution to plot the function of x for given a fixed value of mu and of sigma squared.</p>
+
+<p><img src="assets/images/s-ml-w9-3.png" alt="" /></p>
+
+<h5 id="recommender-systems-collaborative-filtering-algorithm">Recommender Systems: Collaborative Filtering Algorithm</h5>
+
+<p>Collaborative Filtering Algorithm is based on linear regression. We can think of each movie has its features: x1, x2, …, xn. x1 may represent how romance the movie is, x2 may represent how action the movie is, etc. Then if the user has rated enough movies ( 1&lt;= the rating y &lt;= 5), we can use linear regression to predict hθ(x), given the features of a movie.</p>
+
+<p><img src="assets/images/s-ml-w9-4.png" alt="" /></p>
+
+<h5 id="learning-features">Learning features</h5>
+
+<p>Not only we can learn the thetas of each user, we can even learn the value of features of each movie automatically by using Collaborative Filtering Algorithm.</p>
+
+<p>Given a dataset that consists of a set of ratings produced by some users on some movies, you wish to learn the parameter vectors x(1),…,x(nm),θ(1),…,θ(nu) that produce the best fit (minimizes the squared error).</p>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Stanford Machine Learning Week 8 review</title>
+	  <link>//stanford-ml-w8</link>
+	  <author>Kewei Shang</author>
+	  <pubDate>2016-07-03T13:18:00+02:00</pubDate>
+	  <guid>//stanford-ml-w8</guid>
+	  <description><![CDATA[
+	     <p>This week’s machine learning course is about Unsupervised Learning. Supervised Learning is to learn the weights from training examples with answers. <strong>Unsupervised Learning</strong> does not have such answers in the training examples.</p>
+
+<h5 id="what-is-k-means-algorithm">What is K-Means Algorithm?</h5>
+
+<p>K-Means Algorithm is one of the supervised learning algorithm, to automatically find K clusters from the training points. It repeats the two steps iteratively until arrives at the optimal situation.</p>
+
+<ul>
+  <li>Clustering assignment : assign each point (each training example) to a cluster centroid</li>
+  <li>Move centroid : move centroid to the average position of all points belonging to it</li>
+</ul>
+
+<h5 id="a-few-things-to-pay-attention-to-when-implementing-k-means-algorithm">A few things to pay attention to when implementing K-Means Algorithm</h5>
+
+<ul>
+  <li>Always normalise the features (zero-mean, better scaling)</li>
+  <li>Local optimal is possible, depending on the initial K centroids used. Therefore, we should randomly initialise the K centroids many times and choose the one with the minimum cost function</li>
+  <li>Choosing the K number: Elbow Method is not always good. It is better to choose the K number that best serves the downstream purpose.</li>
+</ul>
+
+<h5 id="dimension-reduction-motivation">Dimension Reduction Motivation</h5>
+
+<p>By working with lower dimensional data, we have the following advantages:</p>
+
+<ul>
+  <li>Our learning algorithms can often run much much faster</li>
+  <li>Use less memory or disk space</li>
+  <li>Visualise data in a 2D plot if k = 2, or in a 3D plot if k = 3</li>
+</ul>
+
+<h5 id="pca-principle-component-analysis-algorithm">PCA (Principle Component Analysis) algorithm</h5>
+
+<p>PCA finds a low dimensional “surface” onto which to project the training examples so that the sum of the <strong>projection errors</strong> is minimised.</p>
+
+<p><strong>Projection error</strong> means the projection distance which is the distance between points (All training examples X) and the projections.
+Think about each training example x as a point in a 3D space, and the “surface” as a 2D plane in the 3D space, the distance of the projection from the point x onto the 2D plane is the projection error (projection distance).</p>
+
+<p>Let’s say we have an n-dimensional training example, and we want to reduce it to a k-dimensional training example.</p>
+
+<p>The PCA will find k vectors - u(1), u(2), …, u(k), which will define the “surface”. 
+u(1) .. u(k) are called eigenvectors or principal components.</p>
+
+<h5 id="how-to-reduce-a-training-example-from-n-dimension-to-k-dimension">How to reduce a training example from n dimension to k dimension?</h5>
+
+<p>X the training set, is an n*m matrix</p>
+
+<ol>
+  <li>Sigma = (1/m)<em>X’</em>X, the covariance matrix</li>
+  <li>[U,S,V] = svd(Sigma), take the U, n*n matrix, which are the eigenvectors (the principle components)</li>
+  <li>Ureduce = U(:, 1:k), meaning take the first k columns of U, name it Ureduce, a n*k matrix</li>
+  <li>z = Ureduce’*x transform each training example x into a k dimensional vector</li>
+</ol>
+
+<h5 id="reconstruction-from-compressed-representation">Reconstruction from Compressed Representation</h5>
+
+<p>One can easily reconstruct each training example x (n-dimensional) from the compressed representation (k-dimensional) using xapprox = Ureduce*z</p>
+
+<h5 id="how-to-choose-k-number-of-principal-components">How to choose k (number of principal components)?</h5>
+
+<p>Choose a (smallest value of) k so that “99% of variance is retained”. Yes, we should try to retain as much variance as possible.</p>
+
+<h5 id="is-it-possible-to-apply-the-mapping-x---z-to-cross-validation-and-test-set">Is it possible to apply the mapping x -&gt; z to cross validation and test set?</h5>
+
+<p>Yes, you should apply the same mapping x -&gt; z you get from running PCA on the training set.</p>
+
+<h5 id="caveat">Caveat</h5>
+
+<p>Do not do PCA systematically in your ML system design, only apply PCA when your learning algorithm runs too slow.</p>
+
+<h5 id="dimension-reduction-showcase">Dimension Reduction showcase</h5>
+
+<p>On the left side of the following figure is the original features, each training example (face) is represented by 1024 pixels. When choosing only 100 principal components (reduction of factor of 10), we reduce the dimension of each training example from 1024 to 100. On the right side of the figure is the reconstructed features. Even some informations are lost by dimension reduction, the faces are still recognisable and we 10 times less features to compute.</p>
+
+<p><img src="assets/images/s-ml-w8-1.png" alt="" /></p>
+
+<h5 id="the-eigenvectors">The eigenvectors</h5>
+
+<p>Each of the following faces represents an eigenvector. Each eigenvector transforms one original 1024 dimensional (pixel) training example to 1 pixel of the 100 dimensional (pixel) reduced training example. The figure shows only the first 36 principle components:</p>
+
+<p><img src="assets/images/s-ml-w8-2.png" alt="" /></p>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Stanford Machine Learning Week 7 review</title>
+	  <link>//stanford-ml-w7</link>
+	  <author>Kewei Shang</author>
+	  <pubDate>2016-07-03T12:18:00+02:00</pubDate>
+	  <guid>//stanford-ml-w7</guid>
+	  <description><![CDATA[
+	     <p>This week’s machine learning course is about SVM, which is a very important machine learning algorithm.</p>
+
+<h5 id="what-is-svm-support-vector-machine">What is SVM (Support Vector Machine)?</h5>
+
+<p><strong>SVM</strong> is like logistical regression. It has the same way to solve z, which is ϴ’*X.</p>
+
+<p>The difference is the cost function. SVM’s cost function is two simple straight lines for y == 1; and symmetrically, two other straight lines for y == 0.</p>
+
+<p><img src="assets/images/s-ml-w7-1.png" alt="" /></p>
+
+<p>This is computationally more efficient. It also makes effort to make θ’<em>x &gt;=1 when y = 1 (not merely making θ’</em>x &gt;=0 ), and make tθ’<em>x &lt;=-1 when y = 0 (not merely making θ’</em>x &lt;0).</p>
+
+<p>By solving the minimization of (this modified version of) cost function SVM, thanks to <strong>Large Margin</strong> Technique, we can draw a linear line (if features are not polynomial), we will get the final ϴ, separating the positives (h=1) and negatives(h=0) for <strong>classification</strong> problem.</p>
+
+<h5 id="what-is-large-margin">What is Large Margin?</h5>
+
+<p>With <strong>Large Margin</strong>, we can draw a line that separates the positive points from the negative points. Large Margin guaranties to have a large minimum length of projection from each point to that boundary line.</p>
+
+<h5 id="what-is-vector-inner-product">What is Vector Inner Product?</h5>
+
+<p>If we have two vectors: u = [u1 u2] v = [v1 v2]. One way to calculate the inner product is u’<em>v, which is u1</em>v1 + u2*v2.</p>
+
+<p>Another way to calculate the inner product is based on geometry:
+The normal or (euclidean) length of vector u, ||u|| is sqrt(u1^2 + u2^2). It’s like when we project u1, u2 into axis x (x = u1), and axis y (y = u2), then calculate the Pythagoras theorem. Draw vector v in the axis x and axis y, do a orthogonal projection from v to u and get the length of p (from the origin (0,0) to the orthogonal point), p is signed and could be negative, finally the inner production = p*||u||.</p>
+
+<p><img src="assets/images/s-ml-w7-2.png" alt="" /></p>
+
+<h5 id="apply-vector-inner-product-to-minimise-the-cost-function-to-get-the-large-margin-decision-boundary">Apply Vector Inner Product to minimise the cost function, to get the Large Margin Decision Boundary</h5>
+
+<p>We can rewrite the cost function of SVM in a way that uses Vector Inner Product. In order to minimise the cost function, Vector Inner Product chooses a decision boundary that has the largest margin.</p>
+
+<p><img src="assets/images/s-ml-w7-3.png" alt="" /></p>
+
+<p><img src="assets/images/s-ml-w7-4.png" alt="" /></p>
+
+<h5 id="what-are-kernels">What are Kernels?</h5>
+
+<p>We use a kernel in order to develop complex nonlinear classifiers. Without a kernel (sometimes we call it a linear kernel), we can only develop linear classifiers. <strong>SVM is about the cost function, whereas Kernel is about the hypothesis function.</strong></p>
+
+<h5 id="how-to-use-kernels-in-a-hypothesis-function">How to use Kernels in a hypothesis function?</h5>
+
+<p>Without kernel, we would write a polynomial hypothesis function. We can replace the polynomial hypothesis function x’s by f’s. The f’s are the result of kernel. <strong>Gaussian Kernel</strong> is the most popular kernel that calculates the similarity of two vectors; it returns 1 when two vectors are very similar, and returns 0 when two vectors are very different. Each training example is a n-dimensional vector. We have m vectors in the training set. We can learn parameters θ so that when a vector is similar to certain other vectors, the hypothesis function &gt; 0.</p>
+
+<p><img src="assets/images/s-ml-w7-5.png" alt="" /></p>
+
+<p><img src="assets/images/s-ml-w7-6.png" alt="" /></p>
+
+<p><img src="assets/images/s-ml-w7-7.png" alt="" /></p>
+
+<h5 id="svm-logistic-regression-or-neural-network">SVM, Logistic Regression, or Neural Network?</h5>
+
+<p>It’s not alway obvious to make a choice of the learning algorithm when solving classification problem. Here’s a recommended best practice guide:</p>
+
+<p><img src="assets/images/s-ml-w7-7.png" alt="" /></p>
+
+<h5 id="questions">Questions</h5>
+
+<p>Does it change the hypothesis function of SVM compared to the hypothesis function of Logistic Regression? Why?</p>
+
+<p>It seems - to be verified - that the hypothesis function of SVM becomes:
+h = 1, when theta-transpose<em>x &gt;=0
+h = 0, when theta-transpose</em>x &lt;0</p>
+
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Stanford Machine Learning Week 6 review</title>
+	  <link>//stanford-ml-w6</link>
+	  <author>Kewei Shang</author>
+	  <pubDate>2016-06-22T12:18:00+02:00</pubDate>
+	  <guid>//stanford-ml-w6</guid>
+	  <description><![CDATA[
+	     <p>I just finished the 6th week of Stanford Machine Learning course. It’s still largely about neural network.</p>
+
+<h5 id="how-to-choose-the-number-of-layers-in-neural-network">How to choose the number of layers in neural network?</h5>
+
+<p>The best default strategy is to choose to use one hidden layer. The more hidden layers you have, the more prone you’ll have <strong>high variance</strong> problems. But having too few layers makes the neural network prone to <strong>high bias</strong> problem. A practical strategy is to increment the number of layers - it’s like adding polynomial features or decreasing lambda λ in normal cost function to fix high bias problem - and get the Θ for the neural network. Then use the Θ to calculate the cost function of cross validation. Choose the Θ ( also number of layers) that has the minimum cost function of cross validation.</p>
+
+<h5 id="whats-learning-curve">What’s Learning Curve?</h5>
+
+<p><strong>Learning Curve</strong> shows whether you have a high variance or high bias problem. The horizontal axis represents m : the <strong>training set size</strong>; the vertical axis represents the errors (<strong>training error</strong> and <strong>cross validation error</strong>).</p>
+
+<h5 id="high-bias">High Bias</h5>
+
+<p>When m increases, training error and cross validation error converge and keeps high.</p>
+
+<p><img src="assets/images/s-ml-w6-1.png" alt="" /></p>
+
+<h5 id="high-variance">High Variance</h5>
+
+<p>When m increases, training error and cross validation error also converge, but there’s a gap between training error and cross validation error and adding new training data helps.</p>
+
+<p><img src="assets/images/s-ml-w6-2.png" alt="" /></p>
+
+<p><strong>Good practice when plotting learning curves with small training sets</strong>: It’s often helpful to average across multiple sets of randomly selected examples to determine the training error and cross validation error. For example, for m = 10, randomly choose 10 examples from training set and 10 examples from cross validation set, the calculate the training error and cross validation error. Do this for 50 times to get the average training error and cross validation error for m = 10.</p>
+
+<h5 id="whats-training-set-cross-validation-set-and-test-set">What’s Training Set, Cross Validation Set, and Test Set?</h5>
+
+<p>A good (supervised learning) practice is to divide the data into 3 groups:</p>
+
+<ul>
+  <li>Training Set : Learn the model parameters θ</li>
+  <li>Cross Validation Set : Select the regularzation λ parameters to find tradeoff between high bias and high variance</li>
+  <li>Test Set : Evaluate the “final” model</li>
+</ul>
+
+<h5 id="recommended-approach-to-develop-a-learning-algorithm">Recommended approach to develop a learning algorithm</h5>
+
+<ul>
+  <li>Start with a very simple, <strong>quick-and-dirty algorithm</strong> that you can implement quickly. Implement it and test it against your cross validation data.</li>
+  <li><strong>Plot learning curves</strong> to decide if more data, more features are likely to help.</li>
+  <li><strong>Error analysis</strong>: Manually examine the examples (in cross validation data) that your algorithm made errors on. See if you can spot any systematic trend in what types of examples it is making errors on. For example, for a mail spam classification problem, you could manually examine (1) What type of email it is - Pharma, Replica, Stealing Password? If most of the cross validation error is related to emails of Stealing Password, then it’s worth spending some time to see if you can come up with better features to categorise Stealing Password spam more correctly. (2) What features you think would have helped the algorithm classify them correctly. Finally, <strong>ALWAYS TEST</strong> your assumption again cross validation data.</li>
+</ul>
+
+<h5 id="what-are-precision-and-recall-and-when-are-they-useful">What are Precision and Recall, and when are they useful?</h5>
+
+<p>When solving classification problems, such as Cancer classification, we might be proud to see that we got 1% error on test set (99% correct diagnoses). But wait, only 0.50&amp; of patients have cancer. If we had a “cheat” version of hypothesis predicting all patients don’t have cancer, we would have 99.5% correct diagnoses. But by using “cheat” version, we are not actually improving our predicting algorithm, even though we have a better accuracy. This situation happens when we have <strong>skewed classes</strong></p>
+
+<h5 id="precision-and-recall-come-to-rescue">Precision and Recall come to rescue:</h5>
+
+<ul>
+  <li>Precision : Of all patients where we predicted True (having cancer), what fraction actually has cancer. In the figure below, the denominator is the first row (all predicted True).</li>
+  <li>Recall : Of all patients having cancer, what fraction did we correctly predict as having cancer? In the figure below, the denominator is the first column (all actual True)..</li>
+</ul>
+
+<p><img src="assets/images/s-ml-w6-3.png" alt="" /></p>
+
+<p>The “cheat” version would have 0 as recall, as it predicts all patients not having cancer: recall = zero/non-zero = 0. So we would find out the “cheat” version is not improving our algorithm.</p>
+
+<h5 id="trading-off-precision-and-recall">Trading off precision and recall</h5>
+
+<p>When using logistic regression, we set a <strong>threshold</strong> for hθ(x). If threshold is 0.5, we predict 1 if hθ(x) &gt; 0.5, and we predict 0 if hθ(x) &lt; 0.5.</p>
+
+<p>Suppose we want to predict y = 1 (cancer) only if very confident, we do not want to scare patients. We would set the threshold high, which results in higher precision and lower recall.</p>
+
+<p>But if we want to be more preservative and avoid missing too many cases of cancer, we would set the threshold low, which results in higher recall and lower precision.</p>
+
+<h5 id="when-does-using-a-large-training-set-makes-sense">When does using a large training set makes sense?</h5>
+
+<p>It only makes sense when we have a low bias algorithm - algorithm with (1) many useful features and (2) many parameters θ. In this case, increasing training set size will help fix overfitting problem and training error will be closer to cross validation error. <strong>If features x do not contain enough information to predict y accurately (such as predicting a house’s price from only its size), even if we are using a neural network with a large number of hidden units, it won’t work.</strong> We can ask ourself whether features x contain enough information by imagining if we have a human expert look at the features x, can he/she confidently predict the value of y. Simply looking at a house’s size, even a realtor cannot confidently predict the price. He/She has to have more informations: number of rooms, which part of city, etc.</p>
+
+<h5 id="questions">Questions</h5>
+
+<ul>
+  <li>
+    <p>When features (e.p. polynomial of degree 8: x=40, x8 = too big) are badly scaled, we need to normalise the features. How do we do feature normalisation? What is mu, sigma? Do some further readings and earlier lectures reviews.</p>
+
+    <p>Answer: For each xj (j from 1 to m) we find the mean (mu) for xj over the training set, so that the mean of xj - mu is zero. Sigma represents the standard deviation of xj across the training set, it corrects bad scaled training set. Applying the following: (xj - mu)/sigma to X in order to normalise the features.</p>
+  </li>
+</ul>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Stanford Machine Learning Week 5 review</title>
+	  <link>//stanford-ml-w5</link>
+	  <author>Kewei Shang</author>
+	  <pubDate>2016-06-11T12:18:00+02:00</pubDate>
+	  <guid>//stanford-ml-w5</guid>
+	  <description><![CDATA[
+	     <p>I just finished the 5th week of Stanford Machine Learning course: <strong>Neural Networks: Learning</strong>. Since this week’s course is a little bit difficult. I thought I might as well write something as a reminder, so that I could look back in the future.</p>
+
+<p>I do feel that it is a powerful way to predict the outcome when there’s enough training data, hidden layers and intermediate neurons. A simple and practical neural network would consist of three layers: input layer, hidden layer, and output layer. Actually, one of the first versions of self-driving car was built on a three-layer neural network.</p>
+
+<p>The <strong>forward propagation</strong> is straightforward and intuitive. On the other hand, it’s a bit difficult for me to grasp the concept of <strong>back propagation</strong>. The good news is that I somehow managed to understand the implementation.</p>
+
+<h5 id="the-neural-network-learning-algorithm-on-a-high-level">The Neural Network Learning Algorithm on a high level</h5>
+<ul>
+  <li>Calculate the cost function, given multiple matrices of <code class="highlighter-rouge">thetas*</code> (one matrice per layer). In the end, we should have a cost given thetas. The cost represents how “far” our prediction is from the “reality”.</li>
+  <li>Calculate the gradient (a.k.a. partial derivative) for each given theta. In the end, we should have a concrete numerical gradient value for each given theta. The <strong>back propagation</strong> take place on this step.</li>
+  <li>With the ability to calculate the cost, and gradient for each theta, we can use one of the optimised functions such as fminunc (or gradient descent) to do the following iteration: random initial thetas –&gt; calculate cost and gradients –&gt; update thetas –&gt; less cost and new gradients –&gt; update thetas –&gt; less cost and new gradients –&gt; … —&gt; until we get the minimum cost. This is a glorious moment when we get the optimised thetas, which allows the neural network to do the most accurate prediction.</li>
+</ul>
+
+<p><em><code class="highlighter-rouge">theta</code> is the weight of X, whereas X is the feature vector used to predict outcome.</em></p>
+
+<h5 id="questions">Questions</h5>
+
+<p>Though I finished the assignment of this week, there are still some parts that I need to do more research on to understand better:</p>
+
+<ul>
+  <li>What exactly does <code class="highlighter-rouge">δ (delta)</code> represent in back propagation?</li>
+  <li>Why do we use derivative sigmoid function <code class="highlighter-rouge">g'(z)</code> to calculate the δ (delta) from last layer back to the hidden layers?</li>
+  <li>Why <code class="highlighter-rouge">δ(l+1)*(a(l))T</code> is the gradient (a.k.a. partial derivative) matrice at l layer?</li>
+</ul>
+
+<h5 id="accomplishment">Accomplishment</h5>
+
+<ul>
+  <li>Built a neural network that recognises 1 - 9 digital number imagines with 96% accuracy.</li>
+  <li>Visualized hidden layer images, each of which represents a row of theta in the input layer, who calculates one neuron in the hidden layer. There are 25 neurons in the hidden layer.</li>
+  <li>100% code score passed.</li>
+</ul>
+
+<p><img src="assets/images/s-ml-w5-1.png" alt="weights" />
+<img src="assets/images/s-ml-w5-2.png" alt="score" /></p>
+
+	  ]]></description>
+	</item>
+
+
+</channel>
+</rss>

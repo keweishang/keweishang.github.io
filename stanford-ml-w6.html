@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- [[! Document Settings ]] -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- [[! Page Meta ]] -->
+    <title>Stanford Machine Learning Week 6 review</title>
+    <meta name="description" content="Finding The Way Home - The coding story begins here." />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" >
+
+    <!-- [[! Styles'n'Scripts ]] -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+    <link rel="stylesheet" type="text/css"
+          href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
+
+    <!-- [[! highlight.js ]] -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css">
+    <style>.hljs { background: none; }</style>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- [[! Ghost outputs important style and meta data with this tag ]] -->
+        <link rel="canonical" href="/" />
+    <meta name="referrer" content="origin" />
+    <link rel="next" href="/page2/" />
+
+    <meta property="og:site_name" content="Finding The Way Home" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Finding The Way Home" />
+    <meta property="og:description" content="The coding story begins here." />
+    <meta property="og:url" content="/" />
+    <meta property="og:image" content="/assets/images/cover-write.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Finding The Way Home" />
+    <meta name="twitter:description" content="The coding story begins here." />
+    <meta name="twitter:url" content="/" />
+    <meta name="twitter:image:src" content="/assets/images/cover-write.jpg" />
+
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Website",
+    "publisher": "Finding The Way Home",
+    "url": "/",
+    "image": "/assets/images/cover-write.jpg",
+    "description": "The coding story begins here."
+}
+    </script>
+
+    <meta name="generator" content="Jekyll 3.0.0" />
+    <link rel="alternate" type="application/rss+xml" title="Finding The Way Home" href="/feed.xml" />
+
+
+</head>
+<body class="home-template nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        <li class="nav-home " role="presentation"><a href="/">Home</a></li>
+        <li class="nav-about " role="presentation"><a href="/about">About</a></li>
+        <li class="nav-algorithm " role="presentation"><a href="/tag/algorithm">Algorithm</a></li>
+        <li class="nav-java " role="presentation"><a href="/tag/java">Java</a></li>
+        <li class="nav-python " role="presentation"><a href="/tag/python">Python</a></li>
+        <li class="nav-machine-learning " role="presentation"><a href="/tag/machine-learning">Machine Learning</a></li>
+        <li class="nav-productivity " role="presentation"><a href="/tag/productivity">Productivity</a></li>
+        <li class="nav-author " role="presentation"><a href="/author/kewei">Author</a></li>
+    </ul>
+    <a class="subscribe-button icon-feed" href="/feed.xml">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        <!-- [[! Everything else gets inserted here ]] -->
+        <!-- < default -->
+
+<!-- The comment above "< default" means - insert everything in this file into -->
+    <!-- the [body] of the default.hbs template, which contains our header/footer. -->
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<header class="main-header post-head " style="background-image: url(/assets/images/cover-s-ml-w6.jpg) ">
+    <nav class="main-nav  overlay  clearfix">
+        <a class="blog-logo" href="/"><img src="/assets/images/home.png" alt="Blog Logo" /></a>
+        
+            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+        
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post machine-learning">
+
+        <header class="post-header">
+            <h1 class="post-title">Stanford Machine Learning Week 6 review</h1>
+            <section class="post-meta">
+            <!-- <a href='/'>Kewei Shang</a> -->
+            <time class="post-date" datetime="2016-06-22">22 Jun 2016</time>
+                <!-- [[tags prefix=" on "]] -->
+                 
+                on 
+                
+                    
+                       <a href='/tag/machine-learning'>Machine-learning</a>
+                       
+                
+                
+            </section>
+        </header>
+
+        <section class="post-content">
+            
+            <p>I just finished the 6th week of Stanford Machine Learning course. It’s still largely about neural network.</p>
+
+<h5 id="how-to-choose-the-number-of-layers-in-neural-network">How to choose the number of layers in neural network?</h5>
+
+<p>The best default strategy is to choose to use one hidden layer. The more hidden layers you have, the more prone you’ll have <strong>high variance</strong> problems. But having too few layers makes the neural network prone to <strong>high bias</strong> problem. A practical strategy is to increment the number of layers - it’s like adding polynomial features or decreasing lambda λ in normal cost function to fix high bias problem - and get the Θ for the neural network. Then use the Θ to calculate the cost function of cross validation. Choose the Θ ( also number of layers) that has the minimum cost function of cross validation.</p>
+
+<h5 id="whats-learning-curve">What’s Learning Curve?</h5>
+
+<p><strong>Learning Curve</strong> shows whether you have a high variance or high bias problem. The horizontal axis represents m : the <strong>training set size</strong>; the vertical axis represents the errors (<strong>training error</strong> and <strong>cross validation error</strong>).</p>
+
+<h5 id="high-bias">High Bias</h5>
+
+<p>When m increases, training error and cross validation error converge and keeps high.</p>
+
+<p><img src="assets/images/s-ml-w6-1.png" alt="" /></p>
+
+<h5 id="high-variance">High Variance</h5>
+
+<p>When m increases, training error and cross validation error also converge, but there’s a gap between training error and cross validation error and adding new training data helps.</p>
+
+<p><img src="assets/images/s-ml-w6-2.png" alt="" /></p>
+
+<p><strong>Good practice when plotting learning curves with small training sets</strong>: It’s often helpful to average across multiple sets of randomly selected examples to determine the training error and cross validation error. For example, for m = 10, randomly choose 10 examples from training set and 10 examples from cross validation set, the calculate the training error and cross validation error. Do this for 50 times to get the average training error and cross validation error for m = 10.</p>
+
+<h5 id="whats-training-set-cross-validation-set-and-test-set">What’s Training Set, Cross Validation Set, and Test Set?</h5>
+
+<p>A good (supervised learning) practice is to divide the data into 3 groups:</p>
+
+<ul>
+  <li>Training Set : Learn the model parameters θ</li>
+  <li>Cross Validation Set : Select the regularzation λ parameters to find tradeoff between high bias and high variance</li>
+  <li>Test Set : Evaluate the “final” model</li>
+</ul>
+
+<h5 id="recommended-approach-to-develop-a-learning-algorithm">Recommended approach to develop a learning algorithm</h5>
+
+<ul>
+  <li>Start with a very simple, <strong>quick-and-dirty algorithm</strong> that you can implement quickly. Implement it and test it against your cross validation data.</li>
+  <li><strong>Plot learning curves</strong> to decide if more data, more features are likely to help.</li>
+  <li><strong>Error analysis</strong>: Manually examine the examples (in cross validation data) that your algorithm made errors on. See if you can spot any systematic trend in what types of examples it is making errors on. For example, for a mail spam classification problem, you could manually examine (1) What type of email it is - Pharma, Replica, Stealing Password? If most of the cross validation error is related to emails of Stealing Password, then it’s worth spending some time to see if you can come up with better features to categorise Stealing Password spam more correctly. (2) What features you think would have helped the algorithm classify them correctly. Finally, <strong>ALWAYS TEST</strong> your assumption again cross validation data.</li>
+</ul>
+
+<h5 id="what-are-precision-and-recall-and-when-are-they-useful">What are Precision and Recall, and when are they useful?</h5>
+
+<p>When solving classification problems, such as Cancer classification, we might be proud to see that we got 1% error on test set (99% correct diagnoses). But wait, only 0.50&amp; of patients have cancer. If we had a “cheat” version of hypothesis predicting all patients don’t have cancer, we would have 99.5% correct diagnoses. But by using “cheat” version, we are not actually improving our predicting algorithm, even though we have a better accuracy. This situation happens when we have <strong>skewed classes</strong></p>
+
+<h5 id="precision-and-recall-come-to-rescue">Precision and Recall come to rescue:</h5>
+
+<ul>
+  <li>Precision : Of all patients where we predicted True (having cancer), what fraction actually has cancer. In the figure below, the denominator is the first row (all predicted True).</li>
+  <li>Recall : Of all patients having cancer, what fraction did we correctly predict as having cancer? In the figure below, the denominator is the first column (all actual True)..</li>
+</ul>
+
+<p><img src="assets/images/s-ml-w6-3.png" alt="" /></p>
+
+<p>The “cheat” version would have 0 as recall, as it predicts all patients not having cancer: recall = zero/non-zero = 0. So we would find out the “cheat” version is not improving our algorithm.</p>
+
+<h5 id="trading-off-precision-and-recall">Trading off precision and recall</h5>
+
+<p>When using logistic regression, we set a <strong>threshold</strong> for hθ(x). If threshold is 0.5, we predict 1 if hθ(x) &gt; 0.5, and we predict 0 if hθ(x) &lt; 0.5.</p>
+
+<p>Suppose we want to predict y = 1 (cancer) only if very confident, we do not want to scare patients. We would set the threshold high, which results in higher precision and lower recall.</p>
+
+<p>But if we want to be more preservative and avoid missing too many cases of cancer, we would set the threshold low, which results in higher recall and lower precision.</p>
+
+<h5 id="when-does-using-a-large-training-set-makes-sense">When does using a large training set makes sense?</h5>
+
+<p>It only makes sense when we have a low bias algorithm - algorithm with (1) many useful features and (2) many parameters θ. In this case, increasing training set size will help fix overfitting problem and training error will be closer to cross validation error. <strong>If features x do not contain enough information to predict y accurately (such as predicting a house’s price from only its size), even if we are using a neural network with a large number of hidden units, it won’t work.</strong> We can ask ourself whether features x contain enough information by imagining if we have a human expert look at the features x, can he/she confidently predict the value of y. Simply looking at a house’s size, even a realtor cannot confidently predict the price. He/She has to have more informations: number of rooms, which part of city, etc.</p>
+
+<h5 id="questions">Questions</h5>
+
+<ul>
+  <li>
+    <p>When features (e.p. polynomial of degree 8: x=40, x8 = too big) are badly scaled, we need to normalise the features. How do we do feature normalisation? What is mu, sigma? Do some further readings and earlier lectures reviews.</p>
+
+    <p>Answer: For each xj (j from 1 to m) we find the mean (mu) for xj over the training set, so that the mean of xj - mu is zero. Sigma represents the standard deviation of xj across the training set, it corrects bad scaled training set. Applying the following: (xj - mu)/sigma to X in order to normalise the features.</p>
+  </li>
+</ul>
+
+
+        </section>
+
+        <footer class="post-footer">
+
+            <!-- Everything inside the #author tags pulls data from the author -->
+            <!-- #author-->
+
+            
+            <figure class="author-image">
+                <a class="img" href="/author/kewei" style="background-image: url(/assets/images/casper.png)"><span class="hidden">'s Picture</span></a>
+            </figure>
+            
+
+            <section class="author">
+                <h4><a href="/author/kewei">Kewei Shang</a></h4>
+                
+                
+                    <p> An adorkable geek.</p>
+                
+                <div class="author-meta">
+                    <span class="author-location icon-location"> Paris, France</span> 
+                    <span class="author-link icon-link"><a href="http://github.com/keweishang/"> github.com/keweishang/</a></span> 
+                </div>
+            </section>
+
+            <!-- /author  -->
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="http://twitter.com/share?text=Stanford Machine Learning Week 6 review&amp;url=http://github.com/keweishang/stanford-ml-w6"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://github.com/keweishang/stanford-ml-w6"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://github.com/keweishang/stanford-ml-w6"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+            
+            <!-- Add Disqus Comments -->
+            
+            
+        </footer>
+
+    </article>
+
+</main>
+
+<aside class="read-next">
+
+    <!-- [[! next_post ]] -->
+    
+        <a class="read-next-story " style="background-image: url(/assets/images/cover-boost-brain.jpeg)" href="/boost-brain">
+            <section class="post">
+                <h2>7 ways to boost your brain productivity</h2>
+                <p>Sandra Bond Chapman met an autistic boy one day, and was fascinated by his problem...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /next_post ]] -->
+    <!-- [[! prev_post ]] -->
+    
+        <a class="read-next-story prev " style="background-image: url(/assets/images/cover-s-ml-nn.jpg)" href="/stanford-ml-w5">
+            <section class="post">
+                <h2>Stanford Machine Learning Week 5 review</h2>
+                <p>I just finished the 5th week of Stanford Machine Learning course: Neural Networks: Learning. Since...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /prev_post ]] -->
+</aside>
+
+<!-- /post -->
+
+
+        <footer class="site-footer clearfix">
+          <section class="copyright"><a href="/">Finding The Way Home</a> &copy; 2016</section>
+        </footer>
+    </div>
+    <!-- [[! Ghost outputs important scripts and data with this tag ]] -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!-- [[! The main JavaScript file for Casper ]] -->
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+
+    <!-- Add Google Analytics  -->
+        <!-- Google Analytics Tracking code -->
+     <script>
+	    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	    ga('create', 'UA-69281367-1', 'auto');
+	    ga('send', 'pageview');
+
+     </script>   
+</body>
+</html>

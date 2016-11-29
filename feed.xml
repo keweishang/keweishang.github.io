@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Finding The Way Home - Articles</title>
+    <description>The coding story begins here.</description>
+    <link>
+    http://github.com/keweishang/</link>
+    
+      
+      <item>
+        <title>Understand quicksort partitioning</title>
+        
+          <description>&lt;p&gt;The most important part of understanding quicksort is to understand the partitioning function.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sat, 23 Jul 2016 13:18:00 +0200</pubDate>
+        <link>
+        http://github.com/keweishang//quicksort-partition</link>
+        <guid isPermaLink="true">http://github.com/keweishang//quicksort-partition</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Stanford Machine Learning Final Week Review! Congratulations!</title>
+        
+          <description>&lt;p&gt;This week’s machine learning course is about Machine Learning Pipeline.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Mon, 11 Jul 2016 13:18:00 +0200</pubDate>
+        <link>
+        http://github.com/keweishang//stanford-ml-wf-copy</link>
+        <guid isPermaLink="true">http://github.com/keweishang//stanford-ml-wf-copy</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Stanford Machine Learning Week 10 review</title>
+        
+          <description>&lt;p&gt;This week’s machine learning course is about training large dataset and Stochastic Gradient Descent.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sun, 10 Jul 2016 13:18:00 +0200</pubDate>
+        <link>
+        http://github.com/keweishang//stanford-ml-w10</link>
+        <guid isPermaLink="true">http://github.com/keweishang//stanford-ml-w10</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Stanford Machine Learning Week 9 review</title>
+        
+          <description>&lt;p&gt;This week’s machine learning course is about Anomaly Detection and Recommender Systems.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Fri, 08 Jul 2016 13:18:00 +0200</pubDate>
+        <link>
+        http://github.com/keweishang//stanford-ml-w9</link>
+        <guid isPermaLink="true">http://github.com/keweishang//stanford-ml-w9</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Stanford Machine Learning Week 8 review</title>
+        
+          <description>&lt;p&gt;This week’s machine learning course is about Unsupervised Learning. Supervised Learning is to learn the weights from training examples with answers. &lt;strong&gt;Unsupervised Learning&lt;/strong&gt; does not have such answers in the training examples.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sun, 03 Jul 2016 13:18:00 +0200</pubDate>
+        <link>
+        http://github.com/keweishang//stanford-ml-w8</link>
+        <guid isPermaLink="true">http://github.com/keweishang//stanford-ml-w8</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Stanford Machine Learning Week 7 review</title>
+        
+          <description>&lt;p&gt;This week’s machine learning course is about SVM, which is a very important machine learning algorithm.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sun, 03 Jul 2016 12:18:00 +0200</pubDate>
+        <link>
+        http://github.com/keweishang//stanford-ml-w7</link>
+        <guid isPermaLink="true">http://github.com/keweishang//stanford-ml-w7</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>7 ways to boost your brain productivity</title>
+        
+          <description>&lt;p&gt;Sandra Bond Chapman met an autistic boy one day, and was fascinated by his problem solving skills. She then decided to dedicate her time and life to studying and unlocking the immense humain potential of our brain. Now she’s a leading cognitive neuroscientist at The University of Texas, discovering approaches to build brain resilience, strengthen healthy brain development and repair brain function.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Tue, 28 Jun 2016 12:18:00 +0200</pubDate>
+        <link>
+        http://github.com/keweishang//boost-brain</link>
+        <guid isPermaLink="true">http://github.com/keweishang//boost-brain</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Stanford Machine Learning Week 6 review</title>
+        
+          <description>&lt;p&gt;I just finished the 6th week of Stanford Machine Learning course. It’s still largely about neural network.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Wed, 22 Jun 2016 12:18:00 +0200</pubDate>
+        <link>
+        http://github.com/keweishang//stanford-ml-w6</link>
+        <guid isPermaLink="true">http://github.com/keweishang//stanford-ml-w6</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Stanford Machine Learning Week 5 review</title>
+        
+          <description>&lt;p&gt;I just finished the 5th week of Stanford Machine Learning course: &lt;strong&gt;Neural Networks: Learning&lt;/strong&gt;. Since this week’s course is a little bit difficult. I thought I might as well write something as a reminder, so that I could look back in the future.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sat, 11 Jun 2016 12:18:00 +0200</pubDate>
+        <link>
+        http://github.com/keweishang//stanford-ml-w5</link>
+        <guid isPermaLink="true">http://github.com/keweishang//stanford-ml-w5</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Mimicked version of Alice&#39;s Adventures in Wonderland</title>
+        
+          <description>&lt;p&gt;This is an easy algorithm I coded to practise Python.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Fri, 03 Jun 2016 12:18:00 +0200</pubDate>
+        <link>
+        http://github.com/keweishang//alice-adventures</link>
+        <guid isPermaLink="true">http://github.com/keweishang//alice-adventures</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>How the compiler understands your Java class</title>
+        
+          <description>&lt;p&gt;I have the following static factory method that creates a list view out of an int array:&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Thu, 07 Apr 2016 12:18:00 +0200</pubDate>
+        <link>
+        http://github.com/keweishang//java-compiler-understand</link>
+        <guid isPermaLink="true">http://github.com/keweishang//java-compiler-understand</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Caveat! JVM cannot check a generic cast at runtime</title>
+        
+          <description>&lt;p&gt;The Java Generics is based on Erasure, which means the type check is only done at compile time, and at runtime the type information is erased.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Tue, 05 Jan 2016 11:18:00 +0100</pubDate>
+        <link>
+        http://github.com/keweishang//java-jvm-no-check-generic</link>
+        <guid isPermaLink="true">http://github.com/keweishang//java-jvm-no-check-generic</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Where are variables stored in Java, Stack or Heap?</title>
+        
+          <description>&lt;p&gt;A primitive variable “holds” directly his value itself. Examples of a primitive variable :  &lt;code class=&quot;highlighter-rouge&quot;&gt;int i, long l;&lt;/code&gt;&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sun, 02 Dec 2012 11:18:00 +0100</pubDate>
+        <link>
+        http://github.com/keweishang//java-where-are-local-variables</link>
+        <guid isPermaLink="true">http://github.com/keweishang//java-where-are-local-variables</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Why nonfair lock is faster than fair lock</title>
+        
+          <description>&lt;h5 id=&quot;this-is-the-nonfair-scenario&quot;&gt;This is the nonfair scenario:&lt;/h5&gt;
+&lt;p&gt;When a thread B asks to hold a lock, if the lock is already taken by another thread A. Then the thread B will be suspended. After thread A finished his job, it releases the lock, then thread B is resumed. However, B needs a period of time to be able to actually run it’s task from where it was suspended. And this period of time could be relatively long compared to another thread C who is asking for that exact same lock at the same time. If C could acquire the lock, does C’s job and release the lock before B even “wakes up” (the time between B’s resumed and B’s able to actually run), then it’s a win-win situation for B and C. Because C gets the lock and has it’s job done and releases the lock, while B’s “waking up” and B gets the lock no later than it otherwise would have.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sat, 01 Dec 2012 11:18:00 +0100</pubDate>
+        <link>
+        http://github.com/keweishang//java-nonfair-lock-fast</link>
+        <guid isPermaLink="true">http://github.com/keweishang//java-nonfair-lock-fast</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>How object in Java is initialized</title>
+        
+          <description>&lt;p&gt;It’s important and fun to understand how exactly one object is initialized in Java.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sun, 01 Jul 2012 12:18:00 +0200</pubDate>
+        <link>
+        http://github.com/keweishang//java-object-init</link>
+        <guid isPermaLink="true">http://github.com/keweishang//java-object-init</guid>
+      </item>
+      
+    
+  </channel>
+</rss>
