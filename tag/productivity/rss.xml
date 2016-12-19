@@ -12,6 +12,29 @@
    <atom:link href="rss" rel="self" type="application/rss+xml" />
    
 	<item>
+	  <title>Use function key in IDE wihout pressing fn</title>
+	  <link>//fn-free-ide</link>
+	  <author>Kewei Shang</author>
+	  <pubDate>2016-12-18T01:32:00+01:00</pubDate>
+	  <guid>//fn-free-ide</guid>
+	  <description><![CDATA[
+	     <p>It is not directly related to programming, but it is related to IDE (IntelliJ, Eclipse, etc) and the new MacBook Pro touchbar feature.</p>
+
+<p>With the new MacBook Pro touchbar, we can use simply the function key <kbd>F1</kbd> - <kbd>F12</kbd> in IntelliJ or Eclipse, without having to press <kbd>fn</kbd> + (<kbd>F1</kbd> - <kbd>F12</kbd>).</p>
+
+<p>We can add IntelliJ or Eclipse to the following configuration:
+<a href="assets/images/fn-free-1.png"><img src="assets/images/fn-free-1.png" alt="System Preferences - Keyboard" /></a></p>
+
+<p>After adding IntelliJ or Eclipse to the configuration:
+<a href="assets/images/fn-free-2.png"><img src="assets/images/fn-free-2.png" alt="enter image description here" /></a></p>
+
+<p>With that configured, we can now press simply <kbd>F8</kbd> to do <em>step over</em> when in debugger in IntelliJ, instead of pressing <kbd>fn</kbd> + <kbd>F8</kbd>.</p>
+
+
+	  ]]></description>
+	</item>
+
+	<item>
 	  <title>7 ways to boost your brain productivity</title>
 	  <link>//boost-brain</link>
 	  <author>Kewei Shang</author>

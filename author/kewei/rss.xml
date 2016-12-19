@@ -12,6 +12,29 @@
    <atom:link href="rss" rel="self" type="application/rss+xml" />
    
 	<item>
+	  <title>Use function key in IDE wihout pressing fn</title>
+	  <link>//fn-free-ide</link>
+	  <author>Kewei Shang</author>
+	  <pubDate>2016-12-18T01:32:00+01:00</pubDate>
+	  <guid>//fn-free-ide</guid>
+	  <description><![CDATA[
+	     <p>It is not directly related to programming, but it is related to IDE (IntelliJ, Eclipse, etc) and the new MacBook Pro touchbar feature.</p>
+
+<p>With the new MacBook Pro touchbar, we can use simply the function key <kbd>F1</kbd> - <kbd>F12</kbd> in IntelliJ or Eclipse, without having to press <kbd>fn</kbd> + (<kbd>F1</kbd> - <kbd>F12</kbd>).</p>
+
+<p>We can add IntelliJ or Eclipse to the following configuration:
+<a href="assets/images/fn-free-1.png"><img src="assets/images/fn-free-1.png" alt="System Preferences - Keyboard" /></a></p>
+
+<p>After adding IntelliJ or Eclipse to the configuration:
+<a href="assets/images/fn-free-2.png"><img src="assets/images/fn-free-2.png" alt="enter image description here" /></a></p>
+
+<p>With that configured, we can now press simply <kbd>F8</kbd> to do <em>step over</em> when in debugger in IntelliJ, instead of pressing <kbd>fn</kbd> + <kbd>F8</kbd>.</p>
+
+
+	  ]]></description>
+	</item>
+
+	<item>
 	  <title>Why nonfair lock is faster than fair lock</title>
 	  <link>//java-nonfair-lock-fast</link>
 	  <author>Kewei Shang</author>
@@ -652,52 +675,6 @@ h = 0, when theta-transpose</em>x &lt;0</p>
     <p>Answer: For each xj (j from 1 to m) we find the mean (mu) for xj over the training set, so that the mean of xj - mu is zero. Sigma represents the standard deviation of xj across the training set, it corrects bad scaled training set. Applying the following: (xj - mu)/sigma to X in order to normalise the features.</p>
   </li>
 </ul>
-
-	  ]]></description>
-	</item>
-
-	<item>
-	  <title>Stanford Machine Learning Week 5 review</title>
-	  <link>//stanford-ml-w5</link>
-	  <author>Kewei Shang</author>
-	  <pubDate>2016-06-11T12:18:00+02:00</pubDate>
-	  <guid>//stanford-ml-w5</guid>
-	  <description><![CDATA[
-	     <p>I just finished the 5th week of Stanford Machine Learning course: <strong>Neural Networks: Learning</strong>. Since this week’s course is a little bit difficult. I thought I might as well write something as a reminder, so that I could look back in the future.</p>
-
-<p>I do feel that it is a powerful way to predict the outcome when there’s enough training data, hidden layers and intermediate neurons. A simple and practical neural network would consist of three layers: input layer, hidden layer, and output layer. Actually, one of the first versions of self-driving car was built on a three-layer neural network.</p>
-
-<p>The <strong>forward propagation</strong> is straightforward and intuitive. On the other hand, it’s a bit difficult for me to grasp the concept of <strong>back propagation</strong>. The good news is that I somehow managed to understand the implementation.</p>
-
-<h5 id="the-neural-network-learning-algorithm-on-a-high-level">The Neural Network Learning Algorithm on a high level</h5>
-<ul>
-  <li>Calculate the cost function, given multiple matrices of <code class="highlighter-rouge">thetas*</code> (one matrice per layer). In the end, we should have a cost given thetas. The cost represents how “far” our prediction is from the “reality”.</li>
-  <li>Calculate the gradient (a.k.a. partial derivative) for each given theta. In the end, we should have a concrete numerical gradient value for each given theta. The <strong>back propagation</strong> take place on this step.</li>
-  <li>With the ability to calculate the cost, and gradient for each theta, we can use one of the optimised functions such as fminunc (or gradient descent) to do the following iteration: random initial thetas –&gt; calculate cost and gradients –&gt; update thetas –&gt; less cost and new gradients –&gt; update thetas –&gt; less cost and new gradients –&gt; … —&gt; until we get the minimum cost. This is a glorious moment when we get the optimised thetas, which allows the neural network to do the most accurate prediction.</li>
-</ul>
-
-<p><em><code class="highlighter-rouge">theta</code> is the weight of X, whereas X is the feature vector used to predict outcome.</em></p>
-
-<h5 id="questions">Questions</h5>
-
-<p>Though I finished the assignment of this week, there are still some parts that I need to do more research on to understand better:</p>
-
-<ul>
-  <li>What exactly does <code class="highlighter-rouge">δ (delta)</code> represent in back propagation?</li>
-  <li>Why do we use derivative sigmoid function <code class="highlighter-rouge">g'(z)</code> to calculate the δ (delta) from last layer back to the hidden layers?</li>
-  <li>Why <code class="highlighter-rouge">δ(l+1)*(a(l))T</code> is the gradient (a.k.a. partial derivative) matrice at l layer?</li>
-</ul>
-
-<h5 id="accomplishment">Accomplishment</h5>
-
-<ul>
-  <li>Built a neural network that recognises 1 - 9 digital number imagines with 96% accuracy.</li>
-  <li>Visualized hidden layer images, each of which represents a row of theta in the input layer, who calculates one neuron in the hidden layer. There are 25 neurons in the hidden layer.</li>
-  <li>100% code score passed.</li>
-</ul>
-
-<p><img src="assets/images/s-ml-w5-1.png" alt="weights" />
-<img src="assets/images/s-ml-w5-2.png" alt="score" /></p>
 
 	  ]]></description>
 	</item>

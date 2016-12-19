@@ -8,6 +8,21 @@
     
       
       <item>
+        <title>Use function key in IDE wihout pressing fn</title>
+        
+          <description>&lt;p&gt;It is not directly related to programming, but it is related to IDE (IntelliJ, Eclipse, etc) and the new MacBook Pro touchbar feature.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sun, 18 Dec 2016 01:32:00 +0100</pubDate>
+        <link>
+        http://github.com/keweishang//fn-free-ide</link>
+        <guid isPermaLink="true">http://github.com/keweishang//fn-free-ide</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>Why nonfair lock is faster than fair lock</title>
         
           <description>&lt;h5 id=&quot;this-is-the-nonfair-scenario&quot;&gt;This is the nonfair scenario:&lt;/h5&gt;
