@@ -12,6 +12,25 @@
    <atom:link href="rss" rel="self" type="application/rss+xml" />
    
 	<item>
+	  <title>Completed Algorithm course by Princeton on Coursera</title>
+	  <link>//congrats-algo-princeton</link>
+	  <author>Kewei Shang</author>
+	  <pubDate>2016-12-29T01:32:00+01:00</pubDate>
+	  <guid>//congrats-algo-princeton</guid>
+	  <description><![CDATA[
+	     <p>I’ve spent the last few weeks revisiting and studying algorithm by following Algorithm course by Princeton on Coursera. I’m glad to say that I’ve successfully completed the course with a satisfying grade.</p>
+
+<p>The most important part of the course is learning the implementation of some of the most useful algorithms and data structures, such as array and linked list implementation of <strong>Stack</strong>, <strong>Queue</strong>; binary heap implmentation of <strong>Priority Queue</strong>; implementation of <strong>Mergesort</strong> and <strong>Quicksort</strong>; BST implementation of <strong>Symbol Tables</strong>, and the famous <strong>Red-Black search tree</strong> implementation.</p>
+
+<p>Not only does the course teach how to implement the data structures mentioned above in a intuitive way, it also has practical assignments for you to complete. Each assignment took me 5 - 7 hours. The assignments involve using the data structures from the course to solve a real world problem. The grading system is quite thorough and strict though, especially the tests, so I spent quite a lot of time debugging to make sure that I have a correct implementation.</p>
+
+<p><a href="assets/images/grade_algo_princeton.png"><img src="assets/images/grade_algo_princeton.png" alt="Final Grade" /></a></p>
+
+
+	  ]]></description>
+	</item>
+
+	<item>
 	  <title>Understand quicksort partitioning</title>
 	  <link>//quicksort-partition</link>
 	  <author>Kewei Shang</author>

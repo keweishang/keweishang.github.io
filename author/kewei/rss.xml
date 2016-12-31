@@ -12,6 +12,25 @@
    <atom:link href="rss" rel="self" type="application/rss+xml" />
    
 	<item>
+	  <title>Completed Algorithm course by Princeton on Coursera</title>
+	  <link>//congrats-algo-princeton</link>
+	  <author>Kewei Shang</author>
+	  <pubDate>2016-12-29T01:32:00+01:00</pubDate>
+	  <guid>//congrats-algo-princeton</guid>
+	  <description><![CDATA[
+	     <p>I’ve spent the last few weeks revisiting and studying algorithm by following Algorithm course by Princeton on Coursera. I’m glad to say that I’ve successfully completed the course with a satisfying grade.</p>
+
+<p>The most important part of the course is learning the implementation of some of the most useful algorithms and data structures, such as array and linked list implementation of <strong>Stack</strong>, <strong>Queue</strong>; binary heap implmentation of <strong>Priority Queue</strong>; implementation of <strong>Mergesort</strong> and <strong>Quicksort</strong>; BST implementation of <strong>Symbol Tables</strong>, and the famous <strong>Red-Black search tree</strong> implementation.</p>
+
+<p>Not only does the course teach how to implement the data structures mentioned above in a intuitive way, it also has practical assignments for you to complete. Each assignment took me 5 - 7 hours. The assignments involve using the data structures from the course to solve a real world problem. The grading system is quite thorough and strict though, especially the tests, so I spent quite a lot of time debugging to make sure that I have a correct implementation.</p>
+
+<p><a href="assets/images/grade_algo_princeton.png"><img src="assets/images/grade_algo_princeton.png" alt="Final Grade" /></a></p>
+
+
+	  ]]></description>
+	</item>
+
+	<item>
 	  <title>Use function key in IDE without pressing fn</title>
 	  <link>//fn-free-ide</link>
 	  <author>Kewei Shang</author>
@@ -586,95 +605,6 @@ h = 0, when theta-transpose</em>x &lt;0</p>
 <p>I might need to work on my Big idea thinking - generalising and synthesising skills, as I find it very helpful for me to understand the whole picture. It’s also quite helpful to my audiences since they can understand better, keep themselves interested and follow the topic.</p>
 
 <p>Source: <a href="https://youtu.be/uUL5o-1Yawo">https://youtu.be/uUL5o-1Yawo</a></p>
-
-	  ]]></description>
-	</item>
-
-	<item>
-	  <title>Stanford Machine Learning Week 6 review</title>
-	  <link>//stanford-ml-w6</link>
-	  <author>Kewei Shang</author>
-	  <pubDate>2016-06-22T12:18:00+02:00</pubDate>
-	  <guid>//stanford-ml-w6</guid>
-	  <description><![CDATA[
-	     <p>I just finished the 6th week of Stanford Machine Learning course. It’s still largely about neural network.</p>
-
-<h5 id="how-to-choose-the-number-of-layers-in-neural-network">How to choose the number of layers in neural network?</h5>
-
-<p>The best default strategy is to choose to use one hidden layer. The more hidden layers you have, the more prone you’ll have <strong>high variance</strong> problems. But having too few layers makes the neural network prone to <strong>high bias</strong> problem. A practical strategy is to increment the number of layers - it’s like adding polynomial features or decreasing lambda λ in normal cost function to fix high bias problem - and get the Θ for the neural network. Then use the Θ to calculate the cost function of cross validation. Choose the Θ ( also number of layers) that has the minimum cost function of cross validation.</p>
-
-<h5 id="whats-learning-curve">What’s Learning Curve?</h5>
-
-<p><strong>Learning Curve</strong> shows whether you have a high variance or high bias problem. The horizontal axis represents m : the <strong>training set size</strong>; the vertical axis represents the errors (<strong>training error</strong> and <strong>cross validation error</strong>).</p>
-
-<h5 id="high-bias">High Bias</h5>
-
-<p>When m increases, training error and cross validation error converge and keeps high.</p>
-
-<p><img src="assets/images/s-ml-w6-1.png" alt="" /></p>
-
-<h5 id="high-variance">High Variance</h5>
-
-<p>When m increases, training error and cross validation error also converge, but there’s a gap between training error and cross validation error and adding new training data helps.</p>
-
-<p><img src="assets/images/s-ml-w6-2.png" alt="" /></p>
-
-<p><strong>Good practice when plotting learning curves with small training sets</strong>: It’s often helpful to average across multiple sets of randomly selected examples to determine the training error and cross validation error. For example, for m = 10, randomly choose 10 examples from training set and 10 examples from cross validation set, the calculate the training error and cross validation error. Do this for 50 times to get the average training error and cross validation error for m = 10.</p>
-
-<h5 id="whats-training-set-cross-validation-set-and-test-set">What’s Training Set, Cross Validation Set, and Test Set?</h5>
-
-<p>A good (supervised learning) practice is to divide the data into 3 groups:</p>
-
-<ul>
-  <li>Training Set : Learn the model parameters θ</li>
-  <li>Cross Validation Set : Select the regularzation λ parameters to find tradeoff between high bias and high variance</li>
-  <li>Test Set : Evaluate the “final” model</li>
-</ul>
-
-<h5 id="recommended-approach-to-develop-a-learning-algorithm">Recommended approach to develop a learning algorithm</h5>
-
-<ul>
-  <li>Start with a very simple, <strong>quick-and-dirty algorithm</strong> that you can implement quickly. Implement it and test it against your cross validation data.</li>
-  <li><strong>Plot learning curves</strong> to decide if more data, more features are likely to help.</li>
-  <li><strong>Error analysis</strong>: Manually examine the examples (in cross validation data) that your algorithm made errors on. See if you can spot any systematic trend in what types of examples it is making errors on. For example, for a mail spam classification problem, you could manually examine (1) What type of email it is - Pharma, Replica, Stealing Password? If most of the cross validation error is related to emails of Stealing Password, then it’s worth spending some time to see if you can come up with better features to categorise Stealing Password spam more correctly. (2) What features you think would have helped the algorithm classify them correctly. Finally, <strong>ALWAYS TEST</strong> your assumption again cross validation data.</li>
-</ul>
-
-<h5 id="what-are-precision-and-recall-and-when-are-they-useful">What are Precision and Recall, and when are they useful?</h5>
-
-<p>When solving classification problems, such as Cancer classification, we might be proud to see that we got 1% error on test set (99% correct diagnoses). But wait, only 0.50&amp; of patients have cancer. If we had a “cheat” version of hypothesis predicting all patients don’t have cancer, we would have 99.5% correct diagnoses. But by using “cheat” version, we are not actually improving our predicting algorithm, even though we have a better accuracy. This situation happens when we have <strong>skewed classes</strong></p>
-
-<h5 id="precision-and-recall-come-to-rescue">Precision and Recall come to rescue:</h5>
-
-<ul>
-  <li>Precision : Of all patients where we predicted True (having cancer), what fraction actually has cancer. In the figure below, the denominator is the first row (all predicted True).</li>
-  <li>Recall : Of all patients having cancer, what fraction did we correctly predict as having cancer? In the figure below, the denominator is the first column (all actual True)..</li>
-</ul>
-
-<p><img src="assets/images/s-ml-w6-3.png" alt="" /></p>
-
-<p>The “cheat” version would have 0 as recall, as it predicts all patients not having cancer: recall = zero/non-zero = 0. So we would find out the “cheat” version is not improving our algorithm.</p>
-
-<h5 id="trading-off-precision-and-recall">Trading off precision and recall</h5>
-
-<p>When using logistic regression, we set a <strong>threshold</strong> for hθ(x). If threshold is 0.5, we predict 1 if hθ(x) &gt; 0.5, and we predict 0 if hθ(x) &lt; 0.5.</p>
-
-<p>Suppose we want to predict y = 1 (cancer) only if very confident, we do not want to scare patients. We would set the threshold high, which results in higher precision and lower recall.</p>
-
-<p>But if we want to be more preservative and avoid missing too many cases of cancer, we would set the threshold low, which results in higher recall and lower precision.</p>
-
-<h5 id="when-does-using-a-large-training-set-makes-sense">When does using a large training set makes sense?</h5>
-
-<p>It only makes sense when we have a low bias algorithm - algorithm with (1) many useful features and (2) many parameters θ. In this case, increasing training set size will help fix overfitting problem and training error will be closer to cross validation error. <strong>If features x do not contain enough information to predict y accurately (such as predicting a house’s price from only its size), even if we are using a neural network with a large number of hidden units, it won’t work.</strong> We can ask ourself whether features x contain enough information by imagining if we have a human expert look at the features x, can he/she confidently predict the value of y. Simply looking at a house’s size, even a realtor cannot confidently predict the price. He/She has to have more informations: number of rooms, which part of city, etc.</p>
-
-<h5 id="questions">Questions</h5>
-
-<ul>
-  <li>
-    <p>When features (e.p. polynomial of degree 8: x=40, x8 = too big) are badly scaled, we need to normalise the features. How do we do feature normalisation? What is mu, sigma? Do some further readings and earlier lectures reviews.</p>
-
-    <p>Answer: For each xj (j from 1 to m) we find the mean (mu) for xj over the training set, so that the mean of xj - mu is zero. Sigma represents the standard deviation of xj across the training set, it corrects bad scaled training set. Applying the following: (xj - mu)/sigma to X in order to normalise the features.</p>
-  </li>
-</ul>
 
 	  ]]></description>
 	</item>
